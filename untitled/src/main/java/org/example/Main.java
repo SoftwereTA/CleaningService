@@ -8,6 +8,17 @@ public class Main {
         System.out.println("Zen control");
         System.out.println("Zen control");
         System.out.println("Zen control");
+        System.out.println("Zen control");
+
+        System.out.println("Zen control");
+
+        System.out.println("Zen control");
+
+        System.out.println("Zen control");
+
+        System.out.println("Zen control");
+
+
 
     }
 }
