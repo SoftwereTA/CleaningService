@@ -6,5 +6,7 @@ public class Main {
         System.out.println("tariq11");
         System.out.println("tariq");
         System.out.println("Zen control");
+        System.out.println("Zen control");
+        System.out.println("Zen control");
     }
 }
