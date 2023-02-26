@@ -10,6 +10,6 @@ public class Main {
 
         System.out.println("tariq");
 
-
+        System.out.println("ZZZZZZZZZZ");
     }
 }
