@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10373c95-ceb4-47d1-9227-a4400f8ea9ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Order.java" afterDir="false" />
+    <list default="true" id="50f350fa-7b1d-4ecf-95e3-156d267c31b4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Order.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +48,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Msys\OneDrive\Desktop\ZenFi\untitled\Features" />
       <recent name="C:\Users\MsI\Desktop\Tar2\untitled\Features" />
     </key>
   </component>
