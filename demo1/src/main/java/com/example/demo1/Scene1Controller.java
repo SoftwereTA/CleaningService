@@ -38,21 +38,21 @@ public class Scene1Controller {
 
 
     @FXML
-    public void setFieldPass(PasswordField fieldPass) {
-        this.fieldPass = fieldPass;
+    public void setFieldPass(String Password ) {
+        this.fieldPass.setText("123");
     }
     @FXML
     public PasswordField getFieldPass() {
         return fieldPass;
     }
-
+    public void setFieldUser(String username) {
+        this.fieldUser.setText(username);
+    }
     public TextField getFieldUser() {
         return fieldUser;
     }
 
-    public void setFieldUser(TextField fieldUser) {
-        this.fieldUser = fieldUser;
-    }
+
 
 
 

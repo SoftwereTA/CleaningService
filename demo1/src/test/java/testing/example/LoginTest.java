@@ -22,7 +22,7 @@ import java.io.IOException;
 public class LoginTest extends FxRobot {
 
     String username;
-    PasswordField password;
+    String password;
     String filePath;
     Scene1Controller scene1Controller = new Scene1Controller();
   @BeforeAll
@@ -36,11 +36,10 @@ public class LoginTest extends FxRobot {
         //throw new io.cucumber.java.PendingException();
         //Try achieving this with JavaFX
         username="Admin";
-        password=;
+        password="123";
         filePath="Untitled.txt";
+        scene1Controller.setFieldUser(username);
         scene1Controller.setFieldPass(password);
-        scene1Controller.getFieldPass();
-        scene1Controller.setFieldUser(new TextField());
 
 
 
