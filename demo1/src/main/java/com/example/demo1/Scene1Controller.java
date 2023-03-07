@@ -26,26 +26,31 @@ public class Scene1Controller {
     private PasswordField fieldPass;
     @FXML
     private TextField fieldUser;
+    @FXML
     public Parent getRoot() {
         return root;
     }
     @FXML
     public void setFieldPass(String Password ) {
-        this.fieldPass.setText("123");
+        this.fieldPass.setText(Password);
     }
     @FXML
     public PasswordField getFieldPass() {
         return fieldPass;
     }
+    @FXML
     public void setFieldUser(String username) {
-        this.fieldUser.setText(username);
+        if (fieldUser != null) {
+            fieldUser.setText(username);
+        }
     }
+    @FXML
     public TextField getFieldUser() {
         return fieldUser;
     }
 
 
-    
+
 
     @FXML
     public void login(ActionEvent event) throws IOException {
@@ -96,6 +101,7 @@ public class Scene1Controller {
         reader.close();
         return false;
     }
+    @FXML
     public void ShowErrorMessage() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Login Failed");
@@ -115,6 +121,7 @@ public class Scene1Controller {
 
     }
 
+    @FXML
     public static void closeApplicationIfConfirmed(Window window) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Exit");
@@ -128,11 +135,12 @@ public class Scene1Controller {
         }
     }
 
+    @FXML
     private static void closeWindow(Window window) {
         Stage stage = (Stage) window;
         stage.close();
     }
-
+    @FXML
     public Node getRootNode() {
         return root;
     }

@@ -14,9 +14,14 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.Assertions;
 import org.testfx.api.FxRobot;
+import org.testfx.robot.Motion;
 import org.testfx.util.WaitForAsyncUtils;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+import java.io.File;
 import java.io.IOException;
 
 public class LoginTest extends FxRobot {
@@ -25,32 +30,63 @@ public class LoginTest extends FxRobot {
     String password;
     String filePath;
     Scene1Controller scene1Controller = new Scene1Controller();
+
+    @BeforeAll
+            WaitForAsyncUtils.waitForFxEvents();
   @BeforeAll
         public static void before_all() {
             Application.launch(Main.class);
         }
+
 
     @When("I enter my username and password")
     public void i_enter_my_username_and_password() {
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
         //Try achieving this with JavaFX
-        username="Admin";
-        password="123";
-        filePath="Untitled.txt";
-        scene1Controller.setFieldUser(username);
-        scene1Controller.setFieldPass(password);
+        Platform.runLater(() -> {
+            // Set the username and password
+            username = "Admin";
+            password = "123";
+            filePath = "Untitled.txt";
+            scene1Controller.setFieldUser(username);
+            scene1Controller.setFieldPass(password);
 
-
+            // Verify that the username and password were set correctly
+            Assertions.assertEquals(username, scene1Controller.getFieldUser());
+            Assertions.assertEquals(password, scene1Controller.getFieldPass());
+        });
 
     }
 
     @When("I Choose the login button It should check if the credentials are valid")
     public void i_choose_the_login_button_it_should_check_if_the_credentials_are_valid() throws IOException {
         // Write code here that turns the phrase above into concrete actions
-        scene1Controller.handleLoginButton(new ActionEvent());
-        scene1Controller.CheckCredentials(username, password, filePath);
+//        scene1Controller.handleLoginButton(new ActionEvent());
+//        scene1Controller.CheckCredentials(username, password, filePath);
+        Platform.runLater(() -> {
+            // Set the username and password
+            username = "Admin";
+            password = "123";
+            filePath = "Untitled.txt";
+            scene1Controller.setFieldUser(username);
+            scene1Controller.setFieldPass(password);
 
+// Press the login button
+            FxRobot robot = new FxRobot();
+            robot.clickOn("#loginButton");
+            WaitForAsyncUtils.waitForFxEvents();
+
+// Verify that the username and password were set correctly
+            Assertions.assertEquals(username, scene1Controller.getFieldUser());
+            Assertions.assertEquals(password, scene1Controller.getFieldPass());
+
+// Verify that the login screen is not visible anymore
+            Assertions.assertFalse(robot.lookup("#loginScreen").query().isVisible());
+
+// Verify that the file was created
+            Assertions.assertTrue(new File(filePath).exists());
+        });
 
     }
 
