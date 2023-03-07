@@ -21,5 +21,6 @@ public class LogoutTest {
     public void i_should_be_logged_out_from_the_application() {
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
+        scene2Controller.LoggedOutMsg();
     }
 }
