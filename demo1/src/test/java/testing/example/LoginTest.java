@@ -11,6 +11,8 @@ import io.cucumber.java.en.When;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.testfx.api.FxRobot;
 import org.testfx.util.WaitForAsyncUtils;
@@ -20,7 +22,7 @@ import java.io.IOException;
 public class LoginTest extends FxRobot {
 
     String username;
-    String password;
+    PasswordField password;
     String filePath;
     Scene1Controller scene1Controller = new Scene1Controller();
   @BeforeAll
@@ -34,8 +36,13 @@ public class LoginTest extends FxRobot {
         //throw new io.cucumber.java.PendingException();
         //Try achieving this with JavaFX
         username="Admin";
-        password="123123";
+        password=;
         filePath="Untitled.txt";
+        scene1Controller.setFieldPass(password);
+        scene1Controller.getFieldPass();
+        scene1Controller.setFieldUser(new TextField());
+
+
 
     }
 

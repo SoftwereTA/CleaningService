@@ -21,8 +21,13 @@ public class Scene1Controller {
 
     @FXML
     Parent root;
+
+
+
     @FXML
     private PasswordField fieldPass;
+
+
 
     @FXML
     private TextField fieldUser;
@@ -30,6 +35,25 @@ public class Scene1Controller {
     public Parent getRoot() {
         return root;
     }
+
+
+    @FXML
+    public void setFieldPass(PasswordField fieldPass) {
+        this.fieldPass = fieldPass;
+    }
+    @FXML
+    public PasswordField getFieldPass() {
+        return fieldPass;
+    }
+
+    public TextField getFieldUser() {
+        return fieldUser;
+    }
+
+    public void setFieldUser(TextField fieldUser) {
+        this.fieldUser = fieldUser;
+    }
+
 
 
     @FXML
@@ -64,9 +88,6 @@ public class Scene1Controller {
             alert.showAndWait();
         }
     }
-
-
-
     @FXML
     public boolean CheckCredentials(String username, String password, String filePath) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
