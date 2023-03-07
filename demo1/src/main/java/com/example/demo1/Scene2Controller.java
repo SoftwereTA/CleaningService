@@ -14,7 +14,7 @@ public class Scene2Controller {
     Parent root;
 
     public void switchScene1(ActionEvent event) throws IOException {
-        Main.primaryStage.setScene(Main.scene1);
+       Main.primaryStage.setScene(Main.scene1);
     }
 
     public Parent getRoot() {
