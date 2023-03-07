@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
+
 import java.io.IOException;
 
 public class Main extends Application {
@@ -30,6 +32,15 @@ public class Main extends Application {
         scene2Controller = loader.getController();
         stage.setScene(scene1);
         stage.show();
+
+
+        primaryStage.setOnCloseRequest(event -> {
+            // Call the confirmExit method in the controller
+            Scene1Controller.confirmExit(primaryStage);
+
+            // Consume the event to prevent the default close behavior
+            event.consume();
+        });
     }
 
     public static void main(String[] args) {

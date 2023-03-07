@@ -12,9 +12,7 @@ import java.io.IOException;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-
-
-
+import javafx.stage.Stage;
 
 
 public class Scene1Controller {
@@ -131,6 +129,22 @@ public class Scene1Controller {
             System.out.println("Error: ScenePane is null");
         }
 
+    }
+
+    public static void confirmExit(Stage stage) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Exit");
+        alert.setHeaderText("Are you sure you want to exit?");
+        alert.setContentText("Click OK to exit, or Cancel to continue.");
+        alert.initOwner(stage); // Set the owner of the alert to the main stage
+
+        // Wait for the user to click OK or Cancel
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+        // If the user clicked OK, exit the application
+        if (result == ButtonType.OK) {
+            stage.close();
+        }
     }
 
 
