@@ -12,7 +12,11 @@ public class Scene2Controller {
 
     @FXML
     Parent root;
+    public void CheckCredentials() {
 
+
+
+    }
     public void switchScene1(ActionEvent event) throws IOException {
        Main.primaryStage.setScene(Main.scene1);
     }
@@ -20,6 +24,7 @@ public class Scene2Controller {
     public Parent getRoot() {
         return root;
     }
+
 
 
 }

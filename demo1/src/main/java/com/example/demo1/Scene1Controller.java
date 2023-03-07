@@ -7,28 +7,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+
+
 
 
 public class Scene1Controller {
 
     @FXML
     Parent root;
-
-    // @FXML
-    // private Stage stage;
-    //
-    // Stage stage1;
-    // @FXML
-    // private Button ExitButton;
-    // @FXML
-    // private AnchorPane ScenePane;
-    //
-    // private Scene scene;
-    // @FXML
-    // private Parent root;
-    @FXML
     private PasswordField fieldPass;
 
     @FXML
@@ -39,10 +28,34 @@ public class Scene1Controller {
         return root;
     }
 
+    private TextField usernameField;
 
-    public void switchScene2(ActionEvent event) throws IOException {
+    @FXML
+    private TextField passwordField;
+
+    public void login(ActionEvent event) throws IOException {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        if (TextFieldsComparator.compareTextFieldsToTextFile(username, password, "path/to/textfile.txt")) {
+            switchScene2(event);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("The username and/or password you entered is incorrect.");
+            alert.showAndWait();
+        }
+    }
+
+    private void switchScene2(ActionEvent event) throws IOException {
         Main.primaryStage.setScene(Main.scene2);
     }
+}
+//    public void switchScene2(ActionEvent event) throws IOException {
+//
+//        Main.primaryStage.setScene(Main.scene2);
+//    }
 
     public void exit(ActionEvent event) throws IOException{
 

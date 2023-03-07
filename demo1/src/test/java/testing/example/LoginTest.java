@@ -1,6 +1,7 @@
 package testing.example;
 
 import com.example.demo1.Main;
+import com.example.demo1.Scene2Controller;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.BeforeStep;
@@ -8,6 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import org.testfx.api.FxRobot;
 import org.testfx.util.WaitForAsyncUtils;
@@ -16,14 +18,11 @@ import java.io.IOException;
 
 public class LoginTest extends FxRobot {
 
+    Scene2Controller scene2Controller = new Scene2Controller();
   @BeforeAll
         public static void before_all() {
             Application.launch(Main.class);
         }
-    @BeforeStep
-    public void holdOn() {
-       WaitForAsyncUtils.waitForFxEvents();
-    }
 
     @When("I enter my username and password")
     public void i_enter_my_username_and_password() {
@@ -37,9 +36,11 @@ public class LoginTest extends FxRobot {
     }
 
     @When("I Choose the login button It should check if the credentials are valid")
-    public void i_choose_the_login_button_it_should_check_if_the_credentials_are_valid() {
+    public void i_choose_the_login_button_it_should_check_if_the_credentials_are_valid() throws IOException {
         // Write code here that turns the phrase above into concrete actions
         clickOn("#loginButton");
+        scene2Controller.CheckCredentials();
+
     }
 
     @Then("if invalid I should see an error message")
