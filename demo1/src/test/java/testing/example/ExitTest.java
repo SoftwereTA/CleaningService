@@ -1,10 +1,13 @@
 package testing.example;
 
 import com.example.demo1.Scene1Controller;
+import com.sun.javafx.scene.SceneHelper;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -33,7 +36,11 @@ public class ExitTest {
     public void i_press_alt_f4_or_x() {
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
-        scene1Controller.confirmExit(new Stage());
+        Scene scene = scene1Controller.getRootNode().getScene();
+        // Get the current stage from the scene
+        Stage stage = (Stage) scene.getWindow();
+        // Call the closeApplicationIfConfirmed method with the stage
+        scene1Controller.closeApplicationIfConfirmed(stage);
     }
 
 

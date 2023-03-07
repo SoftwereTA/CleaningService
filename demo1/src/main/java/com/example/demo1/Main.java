@@ -36,7 +36,7 @@ public class Main extends Application {
 
         primaryStage.setOnCloseRequest(event -> {
             // Call the confirmExit method in the controller
-            Scene1Controller.confirmExit(primaryStage);
+            Scene1Controller.closeApplicationIfConfirmed(primaryStage);
 
             // Consume the event to prevent the default close behavior
             event.consume();

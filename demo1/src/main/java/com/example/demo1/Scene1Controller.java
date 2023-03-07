@@ -3,38 +3,32 @@ package com.example.demo1;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Optional;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 
 public class Scene1Controller {
 
     @FXML
     Parent root;
-
-
-
     @FXML
     private PasswordField fieldPass;
-
-
-
     @FXML
     private TextField fieldUser;
-
     public Parent getRoot() {
         return root;
     }
-
-
     @FXML
     public void setFieldPass(String Password ) {
         this.fieldPass.setText("123");
@@ -51,8 +45,7 @@ public class Scene1Controller {
     }
 
 
-
-
+    
 
     @FXML
     public void login(ActionEvent event) throws IOException {
@@ -118,34 +111,32 @@ public class Scene1Controller {
     @FXML
     public void exit(ActionEvent event) throws IOException{
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Exit");
-        alert.setHeaderText("Are you sure you want to exit?");
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            System.out.println("Exit has been done successfully");
-            Platform.exit();
-        } else {
-            System.out.println("Error: ScenePane is null");
-        }
+        closeApplicationIfConfirmed((Stage) ((Node) event.getSource()).getScene().getWindow());
 
     }
 
-    public static void confirmExit(Stage stage) {
+    public static void closeApplicationIfConfirmed(Window window) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Exit");
         alert.setHeaderText("Are you sure you want to exit?");
         alert.setContentText("Click OK to exit, or Cancel to continue.");
-        alert.initOwner(stage); // Set the owner of the alert to the main stage
+        alert.initOwner(window);
 
-        // Wait for the user to click OK or Cancel
-        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
-
-        // If the user clicked OK, exit the application
-        if (result == ButtonType.OK) {
-            stage.close();
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            closeWindow(window);
         }
     }
 
+    private static void closeWindow(Window window) {
+        Stage stage = (Stage) window;
+        stage.close();
+    }
 
+    public Node getRootNode() {
+        return root;
+    }
 }
+
+
+
