@@ -6,6 +6,7 @@ import io.cucumber.java.BeforeAll;
 import io.cucumber.java.BeforeStep;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.testfx.api.FxRobot;
@@ -15,32 +16,10 @@ import java.io.IOException;
 
 public class LoginTest extends FxRobot {
 
-    @BeforeAll
-    static void launch() {
-        new Thread() {
-            @Override
-            public void run() {
-                javafx.application.Application.launch(StartUpTest.class);
-            }
-        }.start();
-        StartUpTest startUpTest = StartUpTest.waitForStartUpTest();
-        startUpTest.printSomething();
-    }
-
-
-    static public class StartUpStartUpTest {
-        public static void main(String[] args) {
-            new Thread() {
-                @Override
-                public void run() {
-                    javafx.application.Application.launch(StartUpTest.class);
-                }
-            }.start();
-            StartUpTest startUpTest = StartUpTest.waitForStartUpTest();
-            startUpTest.printSomething();
+  @BeforeAll
+        public static void before_all() {
+            Application.launch(Main.class);
         }
-    }
-
     @BeforeStep
     public void holdOn() {
        WaitForAsyncUtils.waitForFxEvents();
