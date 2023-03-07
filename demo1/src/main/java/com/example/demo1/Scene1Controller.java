@@ -4,12 +4,15 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+
 
 
 
@@ -18,27 +21,41 @@ public class Scene1Controller {
 
     @FXML
     Parent root;
+    @FXML
     private PasswordField fieldPass;
 
     @FXML
     private TextField fieldUser;
 
-
     public Parent getRoot() {
         return root;
     }
 
-    private TextField usernameField;
 
     @FXML
-    private TextField passwordField;
-
     public void login(ActionEvent event) throws IOException {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-
-        if (TextFieldsComparator.compareTextFieldsToTextFile(username, password, "path/to/textfile.txt")) {
+        String username = fieldUser.getText();
+        String password = fieldPass.getText();
+        boolean match = CheckCredentials(username, password, "Untitled.txt");
+        if (match) {
             switchScene2(event);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("The username and/or password you entered is incorrect.");
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    public void switchScene2(ActionEvent event) throws IOException {
+        String username = fieldUser.getText();
+        String password = fieldPass.getText();
+        boolean match = CheckCredentials(username, password, "Untitled.txt");
+        if (match) {
+            Main.primaryStage.setScene(Main.scene2);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Login Failed");
@@ -48,15 +65,38 @@ public class Scene1Controller {
         }
     }
 
-    private void switchScene2(ActionEvent event) throws IOException {
-        Main.primaryStage.setScene(Main.scene2);
-    }
-}
-//    public void switchScene2(ActionEvent event) throws IOException {
-//
-//        Main.primaryStage.setScene(Main.scene2);
-//    }
 
+
+    @FXML
+    public boolean CheckCredentials(String username, String password, String filePath) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(",");
+            if (parts.length == 2 && parts[0].equals(username) && parts[1].equals(password)) {
+                reader.close();
+                return true;
+            }
+            else{
+                ShowErrorMessage();
+            }
+        }
+        reader.close();
+        return false;
+    }
+    public void ShowErrorMessage() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Login Failed");
+        alert.setHeaderText(null);
+        alert.setContentText("The username and/or password you entered is incorrect.");
+        alert.showAndWait();
+    }
+    @FXML
+    public void handleLoginButton(ActionEvent event) throws IOException {
+        login(event);
+    }
+
+    @FXML
     public void exit(ActionEvent event) throws IOException{
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -64,12 +104,13 @@ public class Scene1Controller {
         alert.setHeaderText("Are you sure you want to exit?");
 
         if (alert.showAndWait().get() == ButtonType.OK) {
-                System.out.println("Exit has been done successfully");
-                Platform.exit();
+            System.out.println("Exit has been done successfully");
+            Platform.exit();
         } else {
-                System.out.println("Error: ScenePane is null");
+            System.out.println("Error: ScenePane is null");
         }
 
     }
-}
 
+
+}
