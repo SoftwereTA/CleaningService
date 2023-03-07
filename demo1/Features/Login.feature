@@ -2,12 +2,12 @@ Feature: Login Feature
 
   As a user of the application I want to be able to login to the application so that I can access my account.
 
-  Background:
-  Given: I have a valid username and password
-  And: I am on the login page
-  | username | password |
-  | Zen    | password |
-  | Tariq    | password |
+#  Background:
+#  Given: I have a valid username and password
+#  And: I am on the login page
+#  | username | password |
+#  | Zen    | password |
+#  | Tariq    | password |
 
 
   Scenario: Login with valid credentials
