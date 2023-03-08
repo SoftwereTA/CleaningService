@@ -31,8 +31,7 @@ public class LoginTest extends FxRobot {
     String filePath;
     Scene1Controller scene1Controller = new Scene1Controller();
 
-    @BeforeAll
-            WaitForAsyncUtils.waitForFxEvents();
+
   @BeforeAll
         public static void before_all() {
             Application.launch(Main.class);
