@@ -38,6 +38,7 @@ public class LoginTest extends FxRobot {
         }
 
 
+
     @When("I enter my username and password")
     public void i_enter_my_username_and_password() {
         // Write code here that turns the phrase above into concrete actions

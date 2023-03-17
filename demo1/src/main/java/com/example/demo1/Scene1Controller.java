@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import java.io.BufferedReader;
@@ -48,6 +49,9 @@ public class Scene1Controller {
     public TextField getFieldUser() {
         return fieldUser;
     }
+
+    @FXML
+    private static boolean isApplicationClosed = false;
 
 
 
@@ -115,25 +119,30 @@ public class Scene1Controller {
     }
 
     @FXML
-    public void exit(ActionEvent event) throws IOException{
-
-        closeApplicationIfConfirmed((Stage) ((Node) event.getSource()).getScene().getWindow());
-
+    public void exit(ActionEvent event) throws IOException {
+        Scene scene = Scene1Controller.getScene();
+        closeApplicationIfConfirmed((Stage) scene.getWindow());
     }
+
+
 
     @FXML
     public static void closeApplicationIfConfirmed(Window window) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirm Exit");
-        alert.setHeaderText("Are you sure you want to exit?");
-        alert.setContentText("Click OK to exit, or Cancel to continue.");
-        alert.initOwner(window);
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirm Exit");
+            alert.setHeaderText("Are you sure you want to exit?");
+            alert.setContentText("Click OK to exit, or Cancel to continue.");
+            alert.initOwner(window);
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            closeWindow(window);
-        }
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                closeWindow(window);
+                setApplicationClosed(true);
+            }
+        });
     }
+
 
     @FXML
     private static void closeWindow(Window window) {
@@ -144,6 +153,22 @@ public class Scene1Controller {
     public Node getRootNode() {
         return root;
     }
+
+    public static boolean isApplicationClosed() {
+        return isApplicationClosed;
+    }
+
+    public static void setApplicationClosed(boolean isClosed) {
+        isApplicationClosed = isClosed;
+    }
+
+    public static Scene getScene() {
+        return Main.scene1;
+    }
+
+//    public Scene getScene() {
+//        return root.getScene();
+//    }
 }
 
 

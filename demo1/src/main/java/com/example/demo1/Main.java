@@ -8,17 +8,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main extends Application {
 
     static Stage primaryStage;
     static Scene1Controller scene1Controller;
-    static Scene scene1;
+    public static Scene scene1;
     static Scene scene2;
     static Scene2Controller scene2Controller;
-
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -45,5 +45,37 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         Application.launch(Main.class, args);
+    }
+
+    public static Scene getCurrentScene() {
+        if (primaryStage.getScene() == scene1) {
+            return scene1;
+        } else if (primaryStage.getScene() == scene2) {
+            return scene2;
+        } else {
+            return null;
+        }
+    }
+
+    public static boolean isApplicationClosed(String applicationName) {
+        Process process;
+        try {
+            if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+                process = Runtime.getRuntime().exec("tasklist");
+            } else {
+                process = Runtime.getRuntime().exec("ps aux");
+            }
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.contains(applicationName)) {
+                        return false;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            // handle exception
+        }
+        return true;
     }
 }
