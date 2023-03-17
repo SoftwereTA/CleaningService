@@ -14,6 +14,7 @@ Feature: Login Feature
     When I enter my username and password
     And I Choose the login button It should check if the credentials are valid
     Then if invalid I should see an error message
+    And if valid I should be logged in to the application
 
   Scenario: Login with blank credentials
     When The username and the password fields are blank when I choose the login button

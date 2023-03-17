@@ -21,6 +21,7 @@ import javafx.stage.Window;
 
 public class Scene1Controller {
 
+    boolean Validcred = false;
     @FXML
     Parent root;
     @FXML
@@ -50,6 +51,7 @@ public class Scene1Controller {
         return fieldUser;
     }
 
+
     @FXML
     private static boolean isApplicationClosed = false;
 
@@ -62,8 +64,10 @@ public class Scene1Controller {
         String password = fieldPass.getText();
         boolean match = CheckCredentials(username, password, "Untitled.txt");
         if (match) {
+            setValidcred(true);
             switchScene2(event);
         } else {
+            setValidcred(false);
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Login Failed");
             alert.setHeaderText(null);
@@ -71,6 +75,13 @@ public class Scene1Controller {
             alert.showAndWait();
         }
 
+    }
+
+    public void setValidcred(boolean b) {
+        Validcred = b;
+    }
+    public boolean getValidCredentials() {
+        return Validcred;
     }
 
     @FXML
@@ -113,15 +124,14 @@ public class Scene1Controller {
         alert.setContentText("The username and/or password you entered is incorrect.");
         alert.showAndWait();
     }
-    @FXML
-    public void handleLoginButton(ActionEvent event) throws IOException {
-        login(event);
-    }
+//    @FXML
+//    public void handleLoginButton(ActionEvent event) throws IOException {
+//        login(event);
+//    }
 
     @FXML
     public void exit(ActionEvent event) throws IOException {
-        Scene scene = Scene1Controller.getScene();
-        closeApplicationIfConfirmed((Stage) scene.getWindow());
+        closeApplicationIfConfirmed((Stage) Main.getCurrentScene().getWindow());
     }
 
 

@@ -28,7 +28,9 @@ public class Scene2Controller {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Scene1.fxml")));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
+                //stage.setScene(new Scene(root));
+                stage.setScene(Main.scene1);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
