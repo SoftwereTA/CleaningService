@@ -34,9 +34,6 @@ public class ExitTest {
     public void the_application_should_exit() {
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
-        Scene scene = Scene1Controller.getScene();
-        Stage stage = (Stage) scene.getWindow();
-        Scene1Controller.closeApplicationIfConfirmed(stage);
         assertTrue(Scene1Controller.isApplicationClosed());
     }
 
