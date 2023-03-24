@@ -24,10 +24,24 @@ public class ExitTest {
 
     Scene1Controller scene1Controller = new Scene1Controller();
 
-    @When("I click the exit option or I press ALT+F4 or X")
-    public void i_click_the_exit_option_or_i_press_alt_f4_or_x() throws IOException {
+    @When("I click the exit option")
+    public void i_click_the_exit_option() throws IOException {
         // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
+//        throw new io.cucumber.java.PendingException();
+        scene1Controller.exit(new ActionEvent());
+    }
+
+    @When("I press ALTF4 option")
+    public void i_press_alt_f4_option() throws IOException {
+        // Write code here that turns the phrase above into concrete actions
+//        throw new io.cucumber.java.PendingException();
+        scene1Controller.exit(new ActionEvent());
+    }
+
+    @When("I click the X")
+    public void i_click_the_x()throws IOException {
+        // Write code here that turns the phrase above into concrete actions
+//        throw new io.cucumber.java.PendingException();
         scene1Controller.exit(new ActionEvent());
     }
     @Then("the application should exit")

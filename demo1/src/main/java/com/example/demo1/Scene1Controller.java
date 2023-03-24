@@ -25,9 +25,9 @@ public class Scene1Controller {
     @FXML
     Parent root;
     @FXML
-    private PasswordField fieldPass;
+    private PasswordField fieldPass=null;
     @FXML
-    private TextField fieldUser;
+    private TextField fieldUser=null;
     @FXML
     public Parent getRoot() {
         return root;
@@ -56,24 +56,30 @@ public class Scene1Controller {
     private static boolean isApplicationClosed = false;
 
 
-
-
     @FXML
     public void login(ActionEvent event) throws IOException {
-        String username = fieldUser.getText();
-        String password = fieldPass.getText();
-        boolean match = CheckCredentials(username, password, "Untitled.txt");
-        if (match) {
-            setValidcred(true);
-            switchScene2(event);
-        } else {
-            setValidcred(false);
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Login Failed");
-            alert.setHeaderText(null);
-            alert.setContentText("The username and/or password you entered is incorrect.");
-            alert.showAndWait();
+        if (fieldUser != null && fieldPass != null) {
+            String username = fieldUser.getText();
+            String password = fieldPass.getText();
+            boolean match = CheckCredentials(username, password, "Untitled.txt");
+            if (match) {
+                setValidcred(true);
+                switchScene2(event);
+            } else {
+                setValidcred(false);
+            }
         }
+        else {
+            setValidcred(false);
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Empty Fields");
+                alert.setContentText("The fields are empty please enter your credentials.");
+                alert.showAndWait();
+            });
+        }
+
 
     }
 
@@ -86,19 +92,11 @@ public class Scene1Controller {
 
     @FXML
     public void switchScene2(ActionEvent event) throws IOException {
-        String username = fieldUser.getText();
-        String password = fieldPass.getText();
-        boolean match = CheckCredentials(username, password, "Untitled.txt");
-        if (match) {
+        Platform.runLater(() -> {
             Main.primaryStage.setScene(Main.scene2);
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Login Failed");
-            alert.setHeaderText(null);
-            alert.setContentText("The username and/or password you entered is incorrect.");
-            alert.showAndWait();
-        }
+        });
     }
+
     @FXML
     public boolean CheckCredentials(String username, String password, String filePath) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -109,32 +107,26 @@ public class Scene1Controller {
                 reader.close();
                 return true;
             }
-            else{
-                ShowErrorMessage();
-            }
         }
         reader.close();
         return false;
     }
     @FXML
     public void ShowErrorMessage() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Login Failed");
-        alert.setHeaderText(null);
-        alert.setContentText("The username and/or password you entered is incorrect.");
-        alert.showAndWait();
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("The username and/or password you entered is incorrect.");
+            alert.showAndWait();
+        });
     }
-//    @FXML
-//    public void handleLoginButton(ActionEvent event) throws IOException {
-//        login(event);
-//    }
+
 
     @FXML
     public void exit(ActionEvent event) throws IOException {
         closeApplicationIfConfirmed((Stage) Main.getCurrentScene().getWindow());
     }
-
-
 
     @FXML
     public static void closeApplicationIfConfirmed(Window window) {
@@ -152,7 +144,6 @@ public class Scene1Controller {
             }
         });
     }
-
 
     @FXML
     private static void closeWindow(Window window) {
@@ -176,9 +167,6 @@ public class Scene1Controller {
         return Main.scene1;
     }
 
-//    public Scene getScene() {
-//        return root.getScene();
-//    }
 }
 
 

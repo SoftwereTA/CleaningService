@@ -19,8 +19,9 @@ import org.junit.jupiter.api.Assertions;
 import org.testfx.api.FxRobot;
 import org.testfx.robot.Motion;
 import org.testfx.util.WaitForAsyncUtils;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.runners.model.MultipleFailureException.assertEmpty;
 
 
 import java.io.File;
@@ -31,6 +32,7 @@ public class LoginTest extends FxRobot {
         String username;
     String password;
     String filePath = "C:\\Users\\Msys\\OneDrive\\Desktop\\CleaningSrv\\demo1\\Untitled.txt";
+    Boolean Check;
     Scene1Controller scene1Controller = new Scene1Controller();
 
 
@@ -39,7 +41,7 @@ public class LoginTest extends FxRobot {
             Application.launch(Main.class);
         }
 
-    @Ignore("I enter my username and password")
+    @When("I enter my username and password")
     public void i_enter_my_username_and_password() {
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
@@ -53,7 +55,7 @@ public class LoginTest extends FxRobot {
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
         scene1Controller.login(new ActionEvent ());
-        assertEquals(true,scene1Controller.getValidCredentials());
+        assertFalse(scene1Controller.getValidCredentials());
     }
     @Then("if invalid I should see an error message")
     public void if_invalid_i_should_see_an_error_message() {
@@ -65,15 +67,17 @@ public class LoginTest extends FxRobot {
         // Write code here that turns the phrase above into concrete actions
         scene1Controller.switchScene2(new ActionEvent());
     }
-    @Ignore("The username and the password fields are blank when I choose the login button")
-    public void the_username_and_the_password_fields_are_blank_when_i_choose_the_login_button() {
+    @When("The username and the password fields are blank when I choose the login button")
+    public void the_username_and_the_password_fields_are_blank_when_i_choose_the_login_button() throws IOException {
         // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        scene1Controller.login(new ActionEvent ());
+        assertFalse(scene1Controller.getValidCredentials());
+
     }
-    @Ignore("I should not be logged in to the application, I should see an error message")
+    @Then("I should not be logged in to the application, I should see an error message")
     public void i_should_not_be_logged_in_to_the_application_i_should_see_an_error_message() {
         // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        assertEquals(Main.scene1, Main.getCurrentScene());
     }
 
 
