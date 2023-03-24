@@ -1,6 +1,7 @@
 package testing.example;
 
 import com.example.demo1.Main;
+import com.example.demo1.Scene1Controller;
 import com.example.demo1.Scene2Controller;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

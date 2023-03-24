@@ -57,31 +57,24 @@ public class Scene1Controller {
 
 
     @FXML
-    public void login(ActionEvent event) throws IOException {
-        if (fieldUser != null && fieldPass != null) {
-            String username = fieldUser.getText();
-            String password = fieldPass.getText();
-            boolean match = CheckCredentials(username, password, "Untitled.txt");
-            if (match) {
-                setValidcred(true);
-                switchScene2(event);
-            } else {
+        public void login(ActionEvent event) throws IOException {
+            if (fieldUser != null && fieldPass != null) {
+                String username = fieldUser.getText();
+                String password = fieldPass.getText();
+                boolean match = CheckCredentials(username, password, "Untitled.txt");
+                if (match) {
+                    setValidcred(true);
+                    switchScene2(event);
+                } else {
+                    setValidcred(false);
+                    ShowErrorMessage();
+                }
+            }
+            else {
                 setValidcred(false);
             }
-        }
-        else {
-            setValidcred(false);
-            Platform.runLater(() -> {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Empty Fields");
-                alert.setContentText("The fields are empty please enter your credentials.");
-                alert.showAndWait();
-            });
-        }
 
-
-    }
+        }
 
     public void setValidcred(boolean b) {
         Validcred = b;
@@ -96,6 +89,9 @@ public class Scene1Controller {
             Main.primaryStage.setScene(Main.scene2);
         });
     }
+
+
+
 
     @FXML
     public boolean CheckCredentials(String username, String password, String filePath) throws IOException {
