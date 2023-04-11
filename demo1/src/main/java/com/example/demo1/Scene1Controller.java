@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Optional;
@@ -85,9 +86,9 @@ public class Scene1Controller {
 
     @FXML
     public void switchScene2(ActionEvent event) throws IOException {
-        Platform.runLater(() -> {
+
             Main.primaryStage.setScene(Main.scene2);
-        });
+
     }
 
 
@@ -95,7 +96,8 @@ public class Scene1Controller {
 
     @FXML
     public boolean CheckCredentials(String username, String password, String filePath) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String classFilePath = new File(filePath).getAbsolutePath();
+        BufferedReader reader = new BufferedReader(new FileReader(classFilePath));
         String line;
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
@@ -121,7 +123,7 @@ public class Scene1Controller {
 
     @FXML
     public void exit(ActionEvent event) throws IOException {
-        closeApplicationIfConfirmed((Stage) Main.getCurrentScene().getWindow());
+        closeApplicationIfConfirmed(Main.getCurrentScene().getWindow());
     }
 
     @FXML

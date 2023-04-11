@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
@@ -29,11 +30,13 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Scene1.fxml"));
-        scene1 = new Scene(loader.load());
+        AnchorPane pane1 = loader.load();
+        scene1 = new Scene(pane1);
         scene1Controller = loader.getController();
 
         loader = new FXMLLoader(getClass().getResource("Scene2.fxml"));
-        scene2 = new Scene(loader.load());
+        AnchorPane pane2 = loader.load();
+        scene2 =new Scene(pane2);
         scene2Controller = loader.getController();
         stage.setScene(scene1);
         stage.show();
