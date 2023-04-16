@@ -26,7 +26,7 @@ public class Scene1Controller {
     @FXML
     private PasswordField fieldPass=null;
     @FXML
-    private TextField fieldUser=null;
+    private TextField fieldUser;
     @FXML
     public Parent getRoot() {
         return root;
@@ -46,18 +46,21 @@ public class Scene1Controller {
         }
     }
     @FXML
-    public TextField getFieldUser() {
-        return fieldUser;
+    public String getFieldUser() {
+        return fieldUser.getText();
     }
+
 
 
     @FXML
     private static boolean isApplicationClosed = false;
     @FXML
-    public static String email = null;
+    static String email = null;
 
     @FXML
     private String username   = null;
+
+
 
     @FXML
         public void login(ActionEvent event) throws IOException {
@@ -196,8 +199,15 @@ public class Scene1Controller {
     }
 
 
-    public String getUsername(){
-        return username;
+    public String getUsername() throws IOException{
+        if (fieldUser != null) {
+            username= fieldUser.getText();
+            System.out.println(username+"123");
+            return username ;
+
+        } else {
+            return null;
+        }
     }
 }
 
