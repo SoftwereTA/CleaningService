@@ -8,6 +8,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 
 //import javax.awt.Label;
@@ -15,6 +23,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Properties;
 
 public class Scene2Controller {
 
@@ -29,6 +38,9 @@ public class Scene2Controller {
     TextField DelText;
     @FXML
     public TextField ShippingType;
+
+    private String OrderAccepted = "Order Accepted";
+    private String MsgText = "Your order with number has been accepted and will be processed shortly, Thank you for choosing us";
 //@FXML
 //public TextField ShippingType;
 //
@@ -255,5 +267,60 @@ public class Scene2Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void sendEmail(String recipientEmail, String subject, String messageBody) {
+        // Sender's email address
+        String senderEmail = "Cleaningservicezt2023@gmail.com";
+        // Sender's email password
+        String senderPassword = "cleaningservice$$1";
+
+        // Email server properties
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com"); // Or your SMTP server
+        props.put("mail.smtp.port", "587"); // Or your SMTP server's port
+
+        // Create a session with the email server
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(senderEmail, senderPassword);
+                    }
+                });
+
+        try {
+            // Create a new message
+            Message message = new MimeMessage(session);
+            // Set the recipient email address
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+            // Set the email subject
+            message.setSubject(subject);
+            // Set the email message body
+            message.setText(messageBody);
+
+            // Send the email
+            Transport.send(message);
+
+            System.out.println("Email sent successfully to " + recipientEmail);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // This method is called when the "Save" button is clicked
+    public void onProceedclick() {
+        // Get the email address entered by the user in the GUI
+        Scene1Controller s1 = new Scene1Controller();
+        s1.getEmailAddress(s1.getUsername());
+        String recipientEmail = s1.email;
+        // Get the email subject entered by the user in the GUI
+        String subject = OrderAccepted;
+        // Get the email message body entered by the user in the GUI
+        String messageBody = MsgText;
+
+        // Send the email
+        sendEmail(recipientEmail, subject, messageBody);
     }
 }
