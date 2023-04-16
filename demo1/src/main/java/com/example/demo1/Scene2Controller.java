@@ -286,10 +286,10 @@ public class Scene2Controller {
                 String lastId = parts[0];
                 counter = Integer.parseInt(lastId) + 1;
             }
-            s1.getUsername();
+           // s1.getUsername();
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
             String id = String.format("%03d", counter);
-            writer.write(id +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\n");
+            writer.write(id + "\t" + Scene1Controller.username +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\n");
             counter++;
             writer.close();
             System.out.println("Order saved to file: " + filename);
