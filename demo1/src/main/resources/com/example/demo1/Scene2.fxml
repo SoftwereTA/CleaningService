@@ -69,6 +69,13 @@
                                  </font>
                               </Label>
                               <Button fx:id="NEXTbutton" layoutX="398.0" layoutY="282.0" mnemonicParsing="false" onAction="#initialize" prefHeight="26.0" prefWidth="160.0" text="NEXT" textAlignment="CENTER" />
+                              <Button layoutX="209.0" layoutY="161.0" mnemonicParsing="false" onAction="#carpet" prefHeight="26.0" prefWidth="167.0" text="Carpet" />
+                              <Button layoutX="210.0" layoutY="192.0" mnemonicParsing="false" onAction="#cover" prefHeight="26.0" prefWidth="166.0" text="Cover" />
+                              <Label layoutX="266.0" layoutY="124.0" prefHeight="34.0" prefWidth="54.0" text="Item">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                   </content>
@@ -102,6 +109,7 @@
                               </Label>
                               <TextField fx:id="DelText" layoutX="202.0" layoutY="269.0" prefHeight="26.0" prefWidth="320.0" promptText="                             City -  Street - Building" visible="false" />
                               <TextField fx:id="ShippingType" editable="false" layoutX="36.0" layoutY="270.0" promptText="         Shipping Type" />
+                              <Button layoutX="470.0" layoutY="227.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Proceed" />
                            </children>
                         </AnchorPane>
                      </content>
