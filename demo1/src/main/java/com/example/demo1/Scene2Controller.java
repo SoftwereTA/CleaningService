@@ -89,7 +89,6 @@ public class Scene2Controller {
     }
 
     public void switchScene1(ActionEvent event) throws IOException {
-
         Platform.runLater(() -> {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Scene1.fxml")));
@@ -266,6 +265,7 @@ public class Scene2Controller {
     }
 
     private int counter;
+    Scene1Controller s1 = new Scene1Controller();
     public void saveToTextFile() {
         String filename = "soso1.txt";
 
@@ -286,10 +286,10 @@ public class Scene2Controller {
                 String lastId = parts[0];
                 counter = Integer.parseInt(lastId) + 1;
             }
-
+            s1.getUsername();
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
             String id = String.format("%03d", counter);
-            writer.write(id + "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\n");
+            writer.write(id +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\n");
             counter++;
             writer.close();
             System.out.println("Order saved to file: " + filename);
