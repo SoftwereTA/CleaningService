@@ -120,7 +120,7 @@ public class Scene2Controller {
     boolean isCarpetSelected = false;
 
     public void carpet() {
-        itemname = "capet";
+        itemname = "carpet";
         //System.out.println(itemname);
         //return true;
     }
