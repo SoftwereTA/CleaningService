@@ -20,12 +20,16 @@ public class Main extends Application {
 
     //Added late
     public static Node stage;
+
     static Stage primaryStage;
     static Scene1Controller scene1Controller;
-    public static Scene scene1;
-   public static Scene scene2;
+    static Scene3Controller scene3Controller;
     static Scene2Controller scene2Controller;
-
+    static Scene4Controller scene4Controller;
+    public static Scene scene1;
+    public static Scene scene3;
+    public static Scene scene2;
+    public static Scene scene4;
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
@@ -34,19 +38,29 @@ public class Main extends Application {
         scene1 = new Scene(pane1);
         scene1Controller = loader.getController();
 
-        loader = new FXMLLoader(getClass().getResource("Scene2.fxml"));
+       loader = new FXMLLoader(getClass().getResource("Scene2.fxml"));
         AnchorPane pane2 = loader.load();
         scene2 =new Scene(pane2);
         scene2Controller = loader.getController();
+
+        loader = new FXMLLoader(getClass().getResource("Scene3.fxml"));
+        AnchorPane pane3 = loader.load();
+        scene3 = new Scene(pane3);
+        scene3Controller = loader.getController();
+
+
+        loader = new FXMLLoader(getClass().getResource("Scene4.fxml"));
+        AnchorPane pane4 = loader.load();
+        scene4 = new Scene(pane4);
+        scene4Controller = loader.getController();
+
         stage.setScene(scene1);
         stage.show();
 
 
-        primaryStage.setOnCloseRequest(event -> {
-            // Call the confirmExit method in the controller
-            Scene1Controller.closeApplicationIfConfirmed(primaryStage);
 
-            // Consume the event to prevent the default close behavior
+        primaryStage.setOnCloseRequest(event -> {
+            Scene1Controller.closeApplicationIfConfirmed(primaryStage);
             event.consume();
         });
     }
@@ -60,6 +74,10 @@ public class Main extends Application {
             return scene1;
         } else if (primaryStage.getScene() == scene2) {
             return scene2;
+        } else if (primaryStage.getScene() == scene3) {
+            return scene3;
+        } else if (primaryStage.getScene() == scene4) {
+            return scene4;
         } else {
             return null;
         }

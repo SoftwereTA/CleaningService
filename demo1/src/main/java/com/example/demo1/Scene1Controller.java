@@ -65,7 +65,12 @@ public class Scene1Controller {
                 boolean match = CheckCredentials(username, password, "Untitled.txt");
                 if (match) {
                     setValidcred(true);
-                    switchScene2(event);
+                    if(username.equals("Admin") && password.equals("admin")){
+                        switchScene3(event);
+                    }
+                    else {
+                        switchScene2(event);
+                    }
                 } else {
                     setValidcred(false);
                     ShowErrorMessage();
@@ -77,6 +82,8 @@ public class Scene1Controller {
 
         }
 
+
+
     public void setValidcred(boolean b) {
         Validcred = b;
     }
@@ -86,11 +93,16 @@ public class Scene1Controller {
 
     @FXML
     public void switchScene2(ActionEvent event) throws IOException {
-
             Main.primaryStage.setScene(Main.scene2);
-
     }
-
+    @FXML
+    private void switchScene3(ActionEvent event) throws IOException {
+        Main.primaryStage.setScene(Main.scene3);
+    }
+    @FXML
+    private void switchScene4(ActionEvent event) throws IOException {
+        Main.primaryStage.setScene(Main.scene4);
+    }
 
 
 
