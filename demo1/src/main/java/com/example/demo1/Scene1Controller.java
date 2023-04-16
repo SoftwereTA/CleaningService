@@ -57,7 +57,7 @@ public class Scene1Controller {
     public static String email = null;
 
     @FXML
-    private String username   = null;
+    public static String username   = null;
 
     @FXML
         public void login(ActionEvent event) throws IOException {
@@ -85,7 +85,6 @@ public class Scene1Controller {
         }
 
 
-
     public void setValidcred(boolean b) {
         Validcred = b;
     }
@@ -105,8 +104,6 @@ public class Scene1Controller {
     private void switchScene4(ActionEvent event) throws IOException {
         Main.primaryStage.setScene(Main.scene4);
     }
-
-
 
     @FXML
     public boolean CheckCredentials(String username, String password, String filePath) throws IOException {
