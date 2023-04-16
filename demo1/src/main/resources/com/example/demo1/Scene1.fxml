@@ -27,7 +27,7 @@
             <PasswordField fx:id="fieldPass" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="login" layoutX="237.0" layoutY="282.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="27.0" prefWidth="158.0" text="Login" />
+      <Button fx:id="login" layoutX="237.0" layoutY="282.0" mnemonicParsing="false" onAction="#login" prefHeight="27.0" prefWidth="158.0" text="Login" />
       <Button layoutX="282.0" layoutY="329.0" mnemonicParsing="false" onAction="#exit" prefHeight="27.0" prefWidth="68.0" text="Exit" />
    </children>
 

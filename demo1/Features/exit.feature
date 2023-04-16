@@ -1,16 +1,13 @@
 Feature: Exit feature
 
   Scenario: Exit the application
-    Given I am using the application
-    When I select the exit option
+    When I click the exit option
     Then the application should exit
 
-    Scenario: Using ALT+F4 to exit the application
-    Given I am using the application
-    When I press ALT+F4
+    Scenario: ALT + F4
+    When I press ALTF4 option
     Then the application should exit
 
-      Scenario: I click the X button to exit the application
-    Given I am using the application
-    When I click the X button
+    Scenario: X
+    When I click the X
     Then the application should exit

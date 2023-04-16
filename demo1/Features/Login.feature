@@ -8,13 +8,16 @@ Feature: Login Feature
 #  | username | password |
 #  | Zen    | password |
 #  | Tariq    | password |
+#
 
+    Scenario: Login with valid credentials
+    When I login and the credentials are valid
+    Then I should be logged in to the application
 
-  Scenario: Login with valid credentials
-    When I enter my username and password
-    And I Choose the login button It should check if the credentials are valid
-    Then if invalid I should see an error message
+    Scenario: Login with invalid credentials
+    When I login  and the credentials are invalid
+      Then I should not be logged in to the application, I should see an error message
 
   Scenario: Login with blank credentials
-    When The username and the password fields are blank when I choose the login button
+    When I login with blank credentials
     Then I should not be logged in to the application, I should see an error message
