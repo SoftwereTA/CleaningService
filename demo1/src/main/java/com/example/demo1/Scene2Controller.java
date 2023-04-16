@@ -1,23 +1,35 @@
 package com.example.demo1;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 
 
+//import javax.awt.Label;
 import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
 
 public class Scene2Controller {
 
+    //public Alert alert;
+    public Alert alert ;
+    //public Label sizetxt;
     @FXML
     Parent root;
     @FXML
-    TextField sizetxt;
+    public TextField sizetxt;
     @FXML
     TextField DelText;
     @FXML
-    TextField ShippingType;
+    public TextField ShippingType;
+//@FXML
+//public TextField ShippingType;
+//
+//    public void initialize() {
+//        ShippingType = new TextField();
+//    }
     @FXML
     Label Location;
     @FXML
@@ -38,6 +50,8 @@ public class Scene2Controller {
             tabPane.getSelectionModel().select(1);
         }
     }
+
+    private ActionEvent event;
 
     public void CheckCredentials() {
 
@@ -64,7 +78,12 @@ public class Scene2Controller {
 
 
     public void SizeHandle1(ActionEvent event) throws IOException {
-        sizetxt.setText("you chose 200x100");
+        if (sizetxt != null) {
+            sizetxt.setText("you chose 200x100");
+        } else {
+            // sizetxt is null, handle the error
+            //Log.e("TAG", "sizetxt is null");
+        }
         int i = 10;
         Scene2Controller.setprice(i);
     }
@@ -74,24 +93,38 @@ public class Scene2Controller {
     }
 
     public void SizeHandle2(ActionEvent event) {
-        sizetxt.setText("you chose 200x200");
+        if (sizetxt != null) {
+            sizetxt.setText("you chose 200x200");
+        } else {
+            // sizetxt is null, handle the error
+            //Log.e("TAG", "sizetxt is null");
+        }
         int i = 20;
         Scene2Controller.setprice(i);
     }
 
     public void SizeHandle3(ActionEvent event) {
-        sizetxt.setText("you chose 300x200");
+//        sizetxt.setText("you chose 300x200");
+        if (sizetxt != null) {
+            sizetxt.setText("you chose 300x200");
+        } else {
+            // sizetxt is null, handle the error
+            //Log.e("TAG", "sizetxt is null");
+        }
         int i = 30;
         Scene2Controller.setprice(i);
     }
 
     public void SpeedBH(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Speed Cleaning");
-        alert.setHeaderText(null);
-        int res = getprice()+15;
-        alert.setContentText("The Price: "+ res);
-        alert.showAndWait();
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Speed Cleaning");
+            alert.setHeaderText(null);
+            int res = getprice() + 15;
+            alert.setContentText("The Price: " + res);
+            alert.showAndWait();
+            this.alert = alert;
+        });
     }
 
     public int getprice() {
@@ -99,21 +132,26 @@ public class Scene2Controller {
     }
 
     public void DryBH(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Dry Cleaning");
-        alert.setHeaderText(null);
-        int res = getprice()+35;
-        alert.setContentText("The Price: "+ res);
-        alert.showAndWait();
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Dry Cleaning");
+            alert.setHeaderText(null);
+            int res = getprice() + 35;
+            alert.setContentText("The Price: " + res);
+            alert.showAndWait();
+        });
     }
 
     public void DeepBH(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Deep Cleaning");
-        alert.setHeaderText(null);
-        int res = getprice()+19;
-        alert.setContentText("The Price: "+ res);
-        alert.showAndWait();
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Deep Cleaning");
+            alert.setHeaderText(null);
+            int res = getprice() + 19;
+            alert.setContentText("The Price: " + res);
+            alert.showAndWait();
+
+        });
     }
 
     public void LocatioHandle(ActionEvent event) throws IOException{
@@ -125,9 +163,13 @@ public class Scene2Controller {
         }
     }
 
-    public void PickupBH(ActionEvent event) throws  IOException {
-        ShippingType.setText("Pickup");
 
+
+    public void PickupBH(ActionEvent event) throws  IOException {
+//        ShippingType.setText("Pickup");
+        if (ShippingType != null) {
+            ShippingType.setText("Pickup");
+        }
         if (DelText != null) {
             DelText.setVisible(false);
         }
@@ -138,15 +180,23 @@ public class Scene2Controller {
     }
 
     public void DeliveryBH(ActionEvent event) throws IOException {
-        ShippingType.setText("Delivery");
+//        ShippingType.setText("Delivery");
+        if (ShippingType != null) {
+            ShippingType.setText("Delivery");
+        }
         LocatioHandle(new ActionEvent());
     }
 
     public void Readymessage() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Notification...");
-        alert.setHeaderText(null);
-        alert.setContentText("You will Receive A Message When It's Ready");
-        alert.showAndWait();
+
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Notification...");
+            alert.setHeaderText(null);
+            alert.setContentText("You will Receive A Message When It's Ready");
+            alert.showAndWait();
+
+        });
+
     }
 }
