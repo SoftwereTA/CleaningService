@@ -19,9 +19,7 @@ import javax.mail.internet.MimeMessage;
 
 
 //import javax.awt.Label;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -256,14 +254,34 @@ public class Scene2Controller {
 
     }
 
+    private int counter;
     public void saveToTextFile() {
         String filename = "soso1.txt";
 
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true)); // change here
-            writer.write(itemname + "\t" + itemsize + "\t" + cleaningtype + "\n");
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String lastLine = "";
+            String currentLine = reader.readLine();
+            while (currentLine != null) {
+                lastLine = currentLine;
+                currentLine = reader.readLine();
+            }
+            reader.close();
+
+            if (lastLine.equals("")) {
+                counter = 1;
+            } else {
+                String[] parts = lastLine.split("\t");
+                String lastId = parts[0];
+                counter = Integer.parseInt(lastId) + 1;
+            }
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
+            String id = String.format("%03d", counter);
+            writer.write(id + "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\n");
+            counter++;
             writer.close();
-            //System.out.println("Order saved to file: " + filename);
+            System.out.println("Order saved to file: " + filename);
         } catch (IOException e) {
             e.printStackTrace();
         }
