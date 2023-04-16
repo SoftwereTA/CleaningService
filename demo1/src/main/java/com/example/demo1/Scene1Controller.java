@@ -8,11 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Optional;
+import java.util.Scanner;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -55,12 +53,16 @@ public class Scene1Controller {
 
     @FXML
     private static boolean isApplicationClosed = false;
+    @FXML
+    public static String email = null;
 
+    @FXML
+    private String username   = null;
 
     @FXML
         public void login(ActionEvent event) throws IOException {
             if (fieldUser != null && fieldPass != null) {
-                String username = fieldUser.getText();
+                username = fieldUser.getText();
                 String password = fieldPass.getText();
                 boolean match = CheckCredentials(username, password, "Untitled.txt");
                 if (match) {
@@ -177,6 +179,26 @@ public class Scene1Controller {
         return Main.scene1;
     }
 
+    public static String getEmailAddress(String username) {
+        try (Scanner scanner = new Scanner(new File("Customers.txt"))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] fields = line.split(",");
+                if (fields.length >= 3 && fields[0].equals(username)) {
+                    email = fields[2];
+                    break;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return email;
+    }
+
+
+    public String getUsername(){
+        return username;
+    }
 }
 
 

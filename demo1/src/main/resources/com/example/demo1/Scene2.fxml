@@ -109,7 +109,7 @@
                               </Label>
                               <TextField fx:id="DelText" layoutX="202.0" layoutY="269.0" prefHeight="26.0" prefWidth="320.0" promptText="                             City -  Street - Building" visible="false" />
                               <TextField fx:id="ShippingType" editable="false" layoutX="36.0" layoutY="270.0" promptText="         Shipping Type" />
-                              <Button layoutX="470.0" layoutY="227.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Proceed" />
+                              <Button layoutX="470.0" layoutY="227.0" mnemonicParsing="false" onAction="#onProceedclick" prefHeight="26.0" prefWidth="115.0" text="Proceed" />
                            </children>
                         </AnchorPane>
                      </content>
