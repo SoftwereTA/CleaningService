@@ -1,13 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.Scene2Controller">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
             <Button fx:id="logoutButton" layoutX="474.0" layoutY="363.0" mnemonicParsing="false" onAction="#switchScene1" prefHeight="28.0" prefWidth="115.0" text="Logout" />
+            <TabPane fx:id="tabPane" prefHeight="350.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="Maintab" text="Main">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <GridPane layoutX="33.0" layoutY="159.0" prefHeight="91.0" prefWidth="157.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#SizeHandle1" prefHeight="26.0" prefWidth="166.0" text="200x100" />
+                                    <Button mnemonicParsing="false" onAction="#SizeHandle2" prefHeight="26.0" prefWidth="164.0" text="200x200" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" onAction="#SizeHandle3" prefHeight="26.0" prefWidth="167.0" text="300x200" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                              <GridPane layoutX="398.0" layoutY="159.0" prefHeight="91.0" prefWidth="157.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#SpeedBH" prefHeight="26.0" prefWidth="166.0" text="Speed Cleaning" />
+                                    <Button mnemonicParsing="false" onAction="#DeepBH" prefHeight="26.0" prefWidth="164.0" text="Deep Cleaning" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" onAction="#DryBH" prefHeight="26.0" prefWidth="167.0" text="Dry Cleaning" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                              <TextField fx:id="sizetxt" editable="false" layoutX="37.0" layoutY="282.0" />
+                              <Label layoutX="60.0" layoutY="124.0" prefHeight="34.0" prefWidth="104.0" text="Size (cm)">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="400.0" layoutY="124.0" text="Cleaning Type">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="52.0" layoutY="36.0" text="Welcome To Our Cleaning Service Application">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="NEXTbutton" layoutX="398.0" layoutY="282.0" mnemonicParsing="false" onAction="#initialize" prefHeight="26.0" prefWidth="160.0" text="NEXT" textAlignment="CENTER" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab fx:id="Shippingtab" text="Shipping">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="98.0" layoutY="52.0" prefHeight="34.0" prefWidth="402.0" text="Please Choose The Type Of Shipping">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
+                              <GridPane layoutX="48.0" layoutY="127.0" prefHeight="66.0" prefWidth="100.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#DeliveryBH" prefHeight="26.0" prefWidth="114.0" text="Delivery" />
+                                    <Button mnemonicParsing="false" onAction="#PickupBH" prefHeight="26.0" prefWidth="118.0" text="Pickup" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                              <Label fx:id="Location" layoutX="164.0" layoutY="134.0" text="* Please Write Your Location Bellow" visible="false">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="DelText" layoutX="202.0" layoutY="269.0" prefHeight="26.0" prefWidth="320.0" promptText="                             City -  Street - Building" visible="false" />
+                              <TextField fx:id="ShippingType" editable="false" layoutX="36.0" layoutY="270.0" promptText="         Shipping Type" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
          </children>
       </AnchorPane>
    </children>
