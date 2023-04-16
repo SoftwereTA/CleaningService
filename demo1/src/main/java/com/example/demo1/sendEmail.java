@@ -40,8 +40,8 @@ public class sendEmail {
         try {
             msg.setFrom(new InternetAddress(fromEmail));
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-            msg.setSubject("Subject Line");
-            msg.setText("Body of message");
+            msg.setSubject(subject);
+            msg.setText(body);
             Transport.send(msg);
             System.out.println("Sent message");
         } catch (MessagingException e) {

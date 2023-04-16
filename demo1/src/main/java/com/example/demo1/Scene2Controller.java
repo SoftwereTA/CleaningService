@@ -47,10 +47,10 @@ public class Scene2Controller {
     TextField DelText;
     @FXML
     public TextField ShippingType;
-
+    String CustomerId="null";
     private String OrderAccepted = "Order Accepted";
-    private String MsgText = "Your order with number has been accepted and will be processed shortly, Thank you for choosing us";
-//@FXML
+    private String MsgText ="null";
+            //@FXML
 //public TextField ShippingType;
 //
 //    public void initialize() {
@@ -288,9 +288,10 @@ public class Scene2Controller {
             }
            // s1.getUsername();
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
-            String id = String.format("%03d", counter);
-            writer.write(id + "\t" + Scene1Controller.username +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\n");
+            CustomerId = String.format("%03d", counter);
+            writer.write(CustomerId + "\t" + Scene1Controller.username +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\n");
             counter++;
+            MsgText = "Your order with IDnumber "+ CustomerId +" has been accepted and will be processed shortly, Thank you for choosing us";
             writer.close();
             System.out.println("Order saved to file: " + filename);
         } catch (IOException e) {
