@@ -1,1 +1,3 @@
 Admin,admin
+Amer,amer12
+Tariq,tariq12

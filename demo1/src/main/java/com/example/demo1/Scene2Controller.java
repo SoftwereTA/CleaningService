@@ -58,10 +58,8 @@ public class Scene2Controller {
     private ActionEvent event;
 
     public void CheckCredentials() {
-
-
-
     }
+
     public void switchScene1(ActionEvent event) throws IOException {
         Platform.runLater(() -> {
             try {
