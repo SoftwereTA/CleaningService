@@ -1,5 +1,2 @@
-item	size		type
 
-capet	200x100	Speed Cleaning
-cover	300x200	Dry Cleaning
-cover	300x200	Dry Cleaning
+001	Amer	cover	200x100	Deep Cleaning

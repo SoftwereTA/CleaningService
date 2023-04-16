@@ -30,9 +30,7 @@ import javax.mail.internet.MimeMultipart;
 
 
 //import javax.awt.Label;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -91,7 +89,6 @@ public class Scene2Controller {
     }
 
     public void switchScene1(ActionEvent event) throws IOException {
-
         Platform.runLater(() -> {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Scene1.fxml")));
@@ -122,7 +119,7 @@ public class Scene2Controller {
     boolean isCarpetSelected = false;
 
     public void carpet() {
-        itemname = "capet";
+        itemname = "carpet";
         //System.out.println(itemname);
         //return true;
     }
@@ -267,14 +264,35 @@ public class Scene2Controller {
 
     }
 
+    private int counter;
+    Scene1Controller s1 = new Scene1Controller();
     public void saveToTextFile() {
         String filename = "soso1.txt";
 
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true)); // change here
-            writer.write(itemname + "\t" + itemsize + "\t" + cleaningtype + "\n");
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String lastLine = "";
+            String currentLine = reader.readLine();
+            while (currentLine != null) {
+                lastLine = currentLine;
+                currentLine = reader.readLine();
+            }
+            reader.close();
+
+            if (lastLine.equals("")) {
+                counter = 1;
+            } else {
+                String[] parts = lastLine.split("\t");
+                String lastId = parts[0];
+                counter = Integer.parseInt(lastId) + 1;
+            }
+           // s1.getUsername();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
+            String id = String.format("%03d", counter);
+            writer.write(id + "\t" + Scene1Controller.username +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\n");
+            counter++;
             writer.close();
-            //System.out.println("Order saved to file: " + filename);
+            System.out.println("Order saved to file: " + filename);
         } catch (IOException e) {
             e.printStackTrace();
         }

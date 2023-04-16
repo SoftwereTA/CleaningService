@@ -1,2 +1,4 @@
 Admin,admin
-Tariq,1234
+Amer,amer12
+Tariq,tariq12
+belal,123123
