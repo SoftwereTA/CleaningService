@@ -2,3 +2,4 @@ Admin,admin
 Amer,amer12
 Tariq,tariq12
 belal,123123
+tarq,123123
