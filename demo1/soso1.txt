@@ -1,5 +1,12 @@
-item	size		type
+ID	item	size    type
 
-capet	200x100	Speed Cleaning
-cover	300x200	Dry Cleaning
-cover	300x200	Dry Cleaning
+001	cover	200x200	Deep Cleaning
+002	cover	200x100	Deep Cleaning
+003	cover	200x200	Deep Cleaning
+004	cover	300x200	Dry Cleaning
+005	cover	200x100	Deep Cleaning
+006	cover	200x200	Dry Cleaning
+007	cover	200x200	Dry Cleaning
+008	cover	200x200	Dry Cleaning
+
+001	null	null	null
