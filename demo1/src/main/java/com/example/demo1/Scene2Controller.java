@@ -11,9 +11,10 @@ import javafx.stage.Stage;
 
 
 //import javax.awt.Label;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
-import java.util.concurrent.CountDownLatch;
 
 public class Scene2Controller {
 
@@ -48,8 +49,14 @@ public class Scene2Controller {
     @FXML
     private Button NEXTbutton;
 
+    String itemname ;
+    String itemsize;
+    String cleaningtype;
+    int Price;
+
     @FXML
     void initialize(ActionEvent event) {
+        saveToTextFile();
         if (tabPane != null) {
             tabPane.getSelectionModel().select(1);
         }
@@ -63,6 +70,7 @@ public class Scene2Controller {
 
     }
     public void switchScene1(ActionEvent event) throws IOException {
+
         Platform.runLater(() -> {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Scene1.fxml")));
@@ -90,10 +98,24 @@ public class Scene2Controller {
         alert.showAndWait();
     }
 
+    boolean isCarpetSelected = false;
+
+    public void carpet() {
+        itemname = "capet";
+        //System.out.println(itemname);
+        //return true;
+    }
+
+    public void cover() {
+        itemname = "cover";
+        //System.out.println(itemname);
+        //return true;
+    }
 
     public void SizeHandle1(ActionEvent event) throws IOException {
         if (sizetxt != null) {
             sizetxt.setText("you chose 200x100");
+            itemsize = "200x100";
         } else {
             // sizetxt is null, handle the error
             //Log.e("TAG", "sizetxt is null");
@@ -109,6 +131,7 @@ public class Scene2Controller {
     public void SizeHandle2(ActionEvent event) {
         if (sizetxt != null) {
             sizetxt.setText("you chose 200x200");
+            itemsize = "200x200";
         } else {
             // sizetxt is null, handle the error
             //Log.e("TAG", "sizetxt is null");
@@ -121,6 +144,7 @@ public class Scene2Controller {
 //        sizetxt.setText("you chose 300x200");
         if (sizetxt != null) {
             sizetxt.setText("you chose 300x200");
+            itemsize = "300x200";
         } else {
             // sizetxt is null, handle the error
             //Log.e("TAG", "sizetxt is null");
@@ -130,6 +154,7 @@ public class Scene2Controller {
     }
 
     public void SpeedBH(ActionEvent event) {
+
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Speed Cleaning");
@@ -139,6 +164,8 @@ public class Scene2Controller {
             alert.showAndWait();
             this.alert = alert;
         });
+        cleaningtype = "Speed Cleaning";
+        Price = getprice() + 15;
     }
 
     public int getprice() {
@@ -154,6 +181,8 @@ public class Scene2Controller {
             alert.setContentText("The Price: " + res);
             alert.showAndWait();
         });
+        cleaningtype = "Dry Cleaning";
+        Price = getprice() + 35;
     }
 
     public void DeepBH(ActionEvent event) {
@@ -166,6 +195,8 @@ public class Scene2Controller {
             alert.showAndWait();
 
         });
+        cleaningtype = "Deep Cleaning";
+        Price = getprice() + 19;
     }
 
     public void LocatioHandle(ActionEvent event) throws IOException{
@@ -201,6 +232,7 @@ public class Scene2Controller {
         LocatioHandle(new ActionEvent());
     }
 
+
     public void Readymessage() {
 
         Platform.runLater(() -> {
@@ -212,5 +244,18 @@ public class Scene2Controller {
 
         });
 
+    }
+
+    public void saveToTextFile() {
+        String filename = "soso1.txt";
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true)); // change here
+            writer.write(itemname + "\t" + itemsize + "\t" + cleaningtype + "\n");
+            writer.close();
+            //System.out.println("Order saved to file: " + filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
