@@ -124,7 +124,7 @@ public class Scene3Controller {
    e.printStackTrace();
   }
      try (FileWriter writer = new FileWriter("Untitled.txt", true)) {
-         writer.write(username + "," + passfield + "\n");
+         writer.write(username + "," + passfield.getText() + "\n");
      } catch (IOException ex) {
          ex.printStackTrace();
      }

@@ -1,8 +1,3 @@
-009	Tariq	carpet	300x200	Dry Cleaning	65
-010	Tariq	carpet	200x100	Speed Cleaning	25
-011	Tariq	cover	200x200	Deep Cleaning	39
-013	Tariq	carpet	300x200	Speed Cleaning	45
-014	Tariq	carpet	200x200	Deep Cleaning	39
-015	Tariq	cover	200x200	Deep Cleaning	39
-016	Tariq	cover	300x200	Deep Cleaning	49
-017	Tariq	cover	200x200	Deep Cleaning	39
+001	Diana	Al Makhfeyyef, S15	cover	300x200	Deep Cleaning	600
+002	Abdallah	Abu Obayda St	carpet	200x100	Deep Cleaning	530
+003 Emad	Level Up, Akademeyeh	carpet	300x200	Deep Cleaning	600
