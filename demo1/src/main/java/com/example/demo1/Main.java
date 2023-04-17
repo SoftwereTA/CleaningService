@@ -51,7 +51,6 @@ public class Main extends Application {
         scene3 = new Scene(pane3);
         scene3Controller = loader.getController();
 
-
         loader = new FXMLLoader(getClass().getResource("Scene4.fxml"));
         AnchorPane pane4 = loader.load();
         scene4 = new Scene(pane4);
