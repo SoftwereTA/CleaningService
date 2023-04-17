@@ -52,7 +52,7 @@
                                     <Button mnemonicParsing="false" onAction="#DryBH" prefHeight="26.0" prefWidth="167.0" text="Dry Cleaning" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
-                              <TextField fx:id="sizetxt" editable="false" layoutX="37.0" layoutY="282.0" />
+                              <TextField fx:id="sizetxt" editable="false" layoutX="34.0" layoutY="282.0" prefHeight="26.0" prefWidth="158.0" />
                               <Label layoutX="60.0" layoutY="124.0" prefHeight="34.0" prefWidth="104.0" text="Size (cm)">
                                  <font>
                                     <Font name="System Bold" size="23.0" />
@@ -76,6 +76,7 @@
                                     <Font name="System Bold" size="23.0" />
                                  </font>
                               </Label>
+                              <TextField fx:id="itemtxt" editable="false" layoutX="209.0" layoutY="282.0" prefHeight="26.0" prefWidth="170.0" />
                            </children>
                         </AnchorPane>
                   </content>
