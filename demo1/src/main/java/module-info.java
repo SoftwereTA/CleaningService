@@ -5,6 +5,7 @@ module com.example.demo1 {
     requires javafx.graphics;
     //requires javax.mail.api;
     requires java.mail;
+    requires java.desktop;
 
 
     opens com.example.demo1 to javafx.fxml;

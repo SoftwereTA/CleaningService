@@ -31,7 +31,7 @@ public class WorkersceneCont {
     public void Reloading (ActionEvent event) throws FileNotFoundException {
 
 
-        File file = new File("C:\\Users\\MsI\\Desktop\\ProjectSoft\\demo1\\soso1.txt");
+        File file = new File("C:\\Users\\Msys\\OneDrive\\Desktop\\CleaningSrv\\Reports.txt");
         Scanner scanner = new Scanner(file);
         String fileContent = "";
         while (scanner.hasNextLine()) {
