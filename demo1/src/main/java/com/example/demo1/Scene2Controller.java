@@ -289,7 +289,7 @@ public class Scene2Controller {
            // s1.getUsername();
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
             CustomerId = String.format("%03d", counter);
-            writer.write(CustomerId + "\t" + Scene1Controller.username +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\n");
+            writer.write(CustomerId + "\t" + Scene1Controller.username +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\t" + Price + "\n");
             counter++;
             MsgText = "Your order with IDnumber "+ CustomerId +" has been accepted and will be processed shortly, Thank you for choosing us";
             writer.close();
