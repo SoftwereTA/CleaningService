@@ -199,7 +199,7 @@ public class Scene2Controller {
                 if (iscover){
                     res = res - 40;
                     alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
-
+                    iscover=false;
                 }
                 else {
                     alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
@@ -235,7 +235,7 @@ public class Scene2Controller {
                 if (iscover){
                     res = res - 40;
                     alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
-
+                    iscover=false;
                 }
                 else {
                     alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
@@ -266,7 +266,7 @@ public class Scene2Controller {
                 if (iscover){
                     res = res - 40;
                     alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
-
+                    iscover=false;
                 }
                 else {
                     alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
