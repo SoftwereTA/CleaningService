@@ -26,10 +26,13 @@ public class Main extends Application {
     static Scene3Controller scene3Controller;
     static Scene2Controller scene2Controller;
     static Scene4Controller scene4Controller;
+    static WorkersceneCont workersceneCont;
     public static Scene scene1;
     public static Scene scene3;
     public static Scene scene2;
     public static Scene scene4;
+
+    public static Scene scene5;
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
@@ -53,6 +56,11 @@ public class Main extends Application {
         AnchorPane pane4 = loader.load();
         scene4 = new Scene(pane4);
         scene4Controller = loader.getController();
+
+        loader = new FXMLLoader(getClass().getResource("WorkerScene.fxml"));
+        AnchorPane pane5 = loader.load();
+        scene5 = new Scene(pane5);
+        workersceneCont = loader.getController();
 
         stage.setScene(scene1);
         stage.show();
@@ -78,6 +86,8 @@ public class Main extends Application {
             return scene3;
         } else if (primaryStage.getScene() == scene4) {
             return scene4;
+        } else if (primaryStage.getScene() == scene5) {
+            return scene5;
         } else {
             return null;
         }
