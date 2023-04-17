@@ -7,11 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -19,6 +22,11 @@ public class WorkersceneCont {
 
     @FXML
     private TextArea textArea;
+
+    @FXML
+    private TextField textID;
+
+    private String status;
     @FXML
     public void Reloading (ActionEvent event) throws FileNotFoundException {
 
@@ -33,6 +41,31 @@ public class WorkersceneCont {
 
         textArea.setText(fileContent);
 
+    }
+    public void Orders() throws IOException {
+        String filename = "Order.txt";
+        String id = textID.getText();
+        // Read the contents of the original file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
+        writer.write(id + "\t" + status + "\n");
+        writer.close();
+        System.out.println("Order saved to file: " + filename);
+    }
+    @FXML
+    public void Waiting (ActionEvent event) throws IOException {
+        status = "Waiting";
+        Orders();
+
+    }
+    @FXML
+    public void In_Treatment (ActionEvent event) throws IOException {
+        status = "In Treatment";
+        Orders();
+    }
+    @FXML
+    public void Complete (ActionEvent event) throws IOException {
+        status = "Complete";
+        Orders();
     }
 
     public void switchScene1(ActionEvent event) throws IOException {
