@@ -131,8 +131,9 @@ public class Scene2Controller {
         //System.out.println(itemname);
         //return true;
     }
-
+    public boolean iscover =false;
     public void cover() {
+        iscover=true;
         itemname = "cover";
         if (itemtxt != null) {
             itemtxt.setText("Cover");
@@ -184,27 +185,38 @@ public class Scene2Controller {
         int i = 350;
         Scene2Controller.setprice(i);
     }
-
+        int res;
     public void SpeedBH(ActionEvent event) {
 
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Speed Cleaning");
             alert.setHeaderText(null);
-            int res = getprice() + 80;
+            res = getprice() + 80;
             int dis = (int) (res * 0.1);
             if (res > 400){
                 res -= dis;
-                alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
+                if (iscover){
+                    res = res - 40;
+                    alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
 
+                }
+                else {
+                    alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
+                }
             }else{
-            alert.setContentText("The Price: " + res);
+                if (iscover) {
+                    res = res - 40;
+                    alert.setContentText("The Price: " + res);
+                }else{
+                    alert.setContentText("The Price: " + res);
+
+                }
             }
             alert.showAndWait();
             this.alert = alert;
         });
         cleaningtype = "Speed Cleaning";
-        Price = getprice() + 190;
     }
 
     public int getprice() {
@@ -216,19 +228,30 @@ public class Scene2Controller {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Dry Cleaning");
             alert.setHeaderText(null);
-            int res = getprice() + 120;
+            res = getprice() + 120;
             int dis = (int) (res * 0.1);
             if (res > 400){
                 res -= dis;
-                alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
+                if (iscover){
+                    res = res - 40;
+                    alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
 
+                }
+                else {
+                    alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
+                }
             }else{
-                alert.setContentText("The Price: " + res);
+                if (iscover) {
+                    res = res - 40;
+                    alert.setContentText("The Price: " + res);
+                }else{
+                    alert.setContentText("The Price: " + res);
+
+                }
             }
             alert.showAndWait();
         });
         cleaningtype = "Dry Cleaning";
-        Price = getprice() + 200;
     }
 
     public void DeepBH(ActionEvent event) {
@@ -236,20 +259,31 @@ public class Scene2Controller {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Deep Cleaning");
             alert.setHeaderText(null);
-            int res = getprice() + 110;
+            res = getprice() + 110;
             int dis = (int) (res * 0.1);
             if (res > 400){
                 res -= dis;
-                alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
+                if (iscover){
+                    res = res - 40;
+                    alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
 
+                }
+                else {
+                    alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
+                }
             }else{
-                alert.setContentText("The Price: " + res);
+                if (iscover) {
+                    res = res - 40;
+                    alert.setContentText("The Price: " + res);
+                }else{
+                    alert.setContentText("The Price: " + res);
+
+                }
             }
             alert.showAndWait();
 
         });
         cleaningtype = "Deep Cleaning";
-        Price = getprice() + 250;
     }
 
     public void LocatioHandle(ActionEvent event) throws IOException{
@@ -354,7 +388,7 @@ public boolean isclicked =false;
                 // s1.getUsername();
                 BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
                 CustomerId = String.format("%03d", counter);
-                writer.write(CustomerId + "\t" + Scene1Controller.username + "\t" + "" +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\t" + Price + "\n");
+                writer.write(CustomerId + "\t" + Scene1Controller.username + "\t" + "" +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\t" + res + "\n");
                 counter++;
                 MsgText = "Your order with IDnumber " + CustomerId + " has been accepted and will be processed shortly, We will send you an email when it's ready to pickup, Thank you for choosing us";
                 writer.close();
