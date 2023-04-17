@@ -1,3 +1,2 @@
 
-001	Amer	cover	200x100	Deep Cleaning
-002	tarq	cover	200x100	Deep Cleaning
+001	Amer	carpet	200x100	Deep Cleaning	29
