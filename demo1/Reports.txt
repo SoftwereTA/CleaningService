@@ -1,3 +1,5 @@
 001	tarq		cover	300x200	Deep Cleaning	600
 002	tarq	Nablus-jamaaSt-3building	cover	200x200	Deep Cleaning	550
 003	tarq	st15	cover	200x200	Deep Cleaning	550
+004	tarq		cover	200x200	Deep Cleaning	550
+005	tarq		cover	200x200	Deep Cleaning	550

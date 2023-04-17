@@ -303,7 +303,7 @@ public boolean isclicked =false;
     private int counter;
     Scene1Controller s1 = new Scene1Controller();
     public void saveToTextFile() {
-        String filename = "soso1.txt";
+        String filename = "Reports.txt";
         if (isclicked) {
             try {
                 BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -356,7 +356,7 @@ public boolean isclicked =false;
                 CustomerId = String.format("%03d", counter);
                 writer.write(CustomerId + "\t" + Scene1Controller.username + "\t" + "" +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\t" + Price + "\n");
                 counter++;
-                MsgText = "Your order with IDnumber " + CustomerId + " has been accepted and will be processed shortly,We will send you an email when it's ready to pickup,Thank you for choosing us";
+                MsgText = "Your order with IDnumber " + CustomerId + " has been accepted and will be processed shortly, We will send you an email when it's ready to pickup, Thank you for choosing us";
                 writer.close();
                 System.out.println("Order saved to file: " + filename);
             } catch (IOException e) {
