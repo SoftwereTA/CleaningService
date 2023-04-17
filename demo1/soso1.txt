@@ -1,2 +1,3 @@
 
 001	Amer	carpet	200x100	Deep Cleaning	29
+002	Amer	cover	300x200	Dry Cleaning	65

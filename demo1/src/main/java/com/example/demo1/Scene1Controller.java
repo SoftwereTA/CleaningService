@@ -72,7 +72,10 @@ public class Scene1Controller {
                 boolean match = CheckCredentials(username, password, "Untitled.txt");
                 if (match) {
                     setValidcred(true);
-                    if(username.equals("Admin") && password.equals("admin")){
+                    if(username.equals("worker") && password.equals("123123")){
+                        switchSceneWorker(event);
+                    }
+                    else if(username.equals("Admin") && password.equals("admin")){
                         switchScene3(event);
                     }
                     else {
@@ -88,6 +91,10 @@ public class Scene1Controller {
             }
 
         }
+
+    private void switchSceneWorker(ActionEvent event) {
+        Main.primaryStage.setScene(Main.scene5);
+    }
 
 
     public void setValidcred(boolean b) {
