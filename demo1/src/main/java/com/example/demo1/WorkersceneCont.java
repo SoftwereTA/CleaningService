@@ -27,6 +27,8 @@ public class WorkersceneCont {
     private TextField textID;
 
     private String status;
+
+    private static String  MsgText;
     @FXML
     public void Reloading (ActionEvent event) throws FileNotFoundException {
 
@@ -53,18 +55,24 @@ public class WorkersceneCont {
     }
     @FXML
     public void Waiting (ActionEvent event) throws IOException {
-        status = "Waiting";
+        status = "Added";
+        MsgText = "Your order has been added to the system and is waiting for a worker to accept it.\n Your order ID is: " + textID.getText() + "\n Thank you for using our service.\n";
+        getName(textID.getText());
         Orders();
 
     }
     @FXML
     public void In_Treatment (ActionEvent event) throws IOException {
-        status = "In Treatment";
+        status = "InTreatment";
+        MsgText = "Your order has been accepted by a worker and is being treated.\n Your order ID is: " + textID.getText() + "\n Thank you for using our service.\n";
+        getName(textID.getText());
         Orders();
     }
     @FXML
     public void Complete (ActionEvent event) throws IOException {
         status = "Complete";
+        MsgText = "Your order has been completed.\n Your order ID is: " + textID.getText() + "\n Thank you for using our service.\n";
+        getName(textID.getText());
         Orders();
     }
 
@@ -82,4 +90,27 @@ public class WorkersceneCont {
         });
         //LoggedOutMsg();
     }
+
+    public static String getName(String id) {
+        String name = "";
+        try (Scanner scanner = new Scanner(new File("Reports.txt"))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] fields = line.split("\t");
+                if (fields.length >= 3 && fields[0].equals(id)) {
+                    name = fields[1];
+                    Scene1Controller s1 = new Scene1Controller();
+                    String email12 = s1.getEmailAddress(name);
+                    String subject = "OrderUpdate";
+                    String messageBody = MsgText;
+                    sendEmail x = new sendEmail(email12, subject, messageBody);
+                }
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
+
 }
