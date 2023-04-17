@@ -44,7 +44,9 @@ public class Scene2Controller {
     @FXML
     public TextField sizetxt;
     @FXML
-    TextField DelText;
+    public TextField itemtxt;
+    @FXML
+    public TextField DelText;
     @FXML
     public TextField ShippingType;
     String CustomerId="null";
@@ -77,7 +79,7 @@ public class Scene2Controller {
 
     @FXML
     void initialize(ActionEvent event) {
-        saveToTextFile();
+        //saveToTextFile();
         if (tabPane != null) {
             tabPane.getSelectionModel().select(1);
         }
@@ -120,25 +122,37 @@ public class Scene2Controller {
 
     public void carpet() {
         itemname = "carpet";
+        if (itemtxt != null) {
+            itemtxt.setText("Carpet");
+        } else {
+            // sizetxt is null, handle the error
+            //Log.e("TAG", "sizetxt is null");
+        }
         //System.out.println(itemname);
         //return true;
     }
 
     public void cover() {
         itemname = "cover";
+        if (itemtxt != null) {
+            itemtxt.setText("Cover");
+        } else {
+            // sizetxt is null, handle the error
+            //Log.e("TAG", "sizetxt is null");
+        }
         //System.out.println(itemname);
         //return true;
     }
 
     public void SizeHandle1(ActionEvent event) throws IOException {
         if (sizetxt != null) {
-            sizetxt.setText("you chose 200x100");
+            sizetxt.setText("200x100");
             itemsize = "200x100";
         } else {
             // sizetxt is null, handle the error
             //Log.e("TAG", "sizetxt is null");
         }
-        int i = 10;
+        int i = 280;
         Scene2Controller.setprice(i);
     }
     static int price;
@@ -148,26 +162,26 @@ public class Scene2Controller {
 
     public void SizeHandle2(ActionEvent event) {
         if (sizetxt != null) {
-            sizetxt.setText("you chose 200x200");
+            sizetxt.setText("200x200");
             itemsize = "200x200";
         } else {
             // sizetxt is null, handle the error
             //Log.e("TAG", "sizetxt is null");
         }
-        int i = 20;
+        int i = 300;
         Scene2Controller.setprice(i);
     }
 
     public void SizeHandle3(ActionEvent event) {
 //        sizetxt.setText("you chose 300x200");
         if (sizetxt != null) {
-            sizetxt.setText("you chose 300x200");
+            sizetxt.setText("300x200");
             itemsize = "300x200";
         } else {
             // sizetxt is null, handle the error
             //Log.e("TAG", "sizetxt is null");
         }
-        int i = 30;
+        int i = 350;
         Scene2Controller.setprice(i);
     }
 
@@ -177,13 +191,20 @@ public class Scene2Controller {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Speed Cleaning");
             alert.setHeaderText(null);
-            int res = getprice() + 15;
+            int res = getprice() + 80;
+            int dis = (int) (res * 0.1);
+            if (res > 400){
+                res -= dis;
+                alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
+
+            }else{
             alert.setContentText("The Price: " + res);
+            }
             alert.showAndWait();
             this.alert = alert;
         });
         cleaningtype = "Speed Cleaning";
-        Price = getprice() + 15;
+        Price = getprice() + 190;
     }
 
     public int getprice() {
@@ -195,12 +216,19 @@ public class Scene2Controller {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Dry Cleaning");
             alert.setHeaderText(null);
-            int res = getprice() + 35;
-            alert.setContentText("The Price: " + res);
+            int res = getprice() + 120;
+            int dis = (int) (res * 0.1);
+            if (res > 400){
+                res -= dis;
+                alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
+
+            }else{
+                alert.setContentText("The Price: " + res);
+            }
             alert.showAndWait();
         });
         cleaningtype = "Dry Cleaning";
-        Price = getprice() + 35;
+        Price = getprice() + 200;
     }
 
     public void DeepBH(ActionEvent event) {
@@ -208,13 +236,20 @@ public class Scene2Controller {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Deep Cleaning");
             alert.setHeaderText(null);
-            int res = getprice() + 19;
-            alert.setContentText("The Price: " + res);
+            int res = getprice() + 110;
+            int dis = (int) (res * 0.1);
+            if (res > 400){
+                res -= dis;
+                alert.setContentText("You got 10% discount\nAnd the final Price is: " + res);
+
+            }else{
+                alert.setContentText("The Price: " + res);
+            }
             alert.showAndWait();
 
         });
         cleaningtype = "Deep Cleaning";
-        Price = getprice() + 19;
+        Price = getprice() + 250;
     }
 
     public void LocatioHandle(ActionEvent event) throws IOException{
@@ -241,8 +276,9 @@ public class Scene2Controller {
         }
         Readymessage();
     }
-
+public boolean isclicked =false;
     public void DeliveryBH(ActionEvent event) throws IOException {
+        isclicked=true;
 //        ShippingType.setText("Delivery");
         if (ShippingType != null) {
             ShippingType.setText("Delivery");
@@ -267,42 +303,75 @@ public class Scene2Controller {
     private int counter;
     Scene1Controller s1 = new Scene1Controller();
     public void saveToTextFile() {
-        String filename = "Reports.txt";
+        String filename = "soso1.txt";
+        if (isclicked) {
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(filename));
+                String lastLine = "";
+                String currentLine = reader.readLine();
+                while (currentLine != null) {
+                    lastLine = currentLine;
+                    currentLine = reader.readLine();
+                }
+                reader.close();
 
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
-            String lastLine = "";
-            String currentLine = reader.readLine();
-            while (currentLine != null) {
-                lastLine = currentLine;
-                currentLine = reader.readLine();
+                if (lastLine.equals("")) {
+                    counter = 1;
+                } else {
+                    String[] parts = lastLine.split("\t");
+                    String lastId = parts[0];
+                    counter = Integer.parseInt(lastId) + 1;
+                }
+                // s1.getUsername();
+                BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
+                CustomerId = String.format("%03d", counter);
+                writer.write(CustomerId + "\t" + Scene1Controller.username + "\t" + DelText.getText() + "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\t" + Price + "\n");
+                counter++;
+                MsgText = "Your order with IDnumber " + CustomerId + " has been accepted and will be processed shortly, it will be sent to this location when it's done " + DelText.getText() + " Thank you for choosing us";
+                writer.close();
+                System.out.println("Order saved to file: " + filename);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            reader.close();
+        }else {
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(filename));
+                String lastLine = "";
+                String currentLine = reader.readLine();
+                while (currentLine != null) {
+                    lastLine = currentLine;
+                    currentLine = reader.readLine();
+                }
+                reader.close();
 
-            if (lastLine.equals("")) {
-                counter = 1;
-            } else {
-                String[] parts = lastLine.split("\t");
-                String lastId = parts[0];
-                counter = Integer.parseInt(lastId) + 1;
+                if (lastLine.equals("")) {
+                    counter = 1;
+                } else {
+                    String[] parts = lastLine.split("\t");
+                    String lastId = parts[0];
+                    counter = Integer.parseInt(lastId) + 1;
+                }
+                // s1.getUsername();
+                BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
+                CustomerId = String.format("%03d", counter);
+                writer.write(CustomerId + "\t" + Scene1Controller.username + "\t" + "" +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\t" + Price + "\n");
+                counter++;
+                MsgText = "Your order with IDnumber " + CustomerId + " has been accepted and will be processed shortly,We will send you an email when it's ready to pickup,Thank you for choosing us";
+                writer.close();
+                System.out.println("Order saved to file: " + filename);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-           // s1.getUsername();
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
-            CustomerId = String.format("%03d", counter);
-            writer.write(CustomerId + "\t" + Scene1Controller.username +  "\t" + itemname + "\t" + itemsize + "\t" + cleaningtype + "\t" + Price + "\n");
-            counter++;
-            MsgText = "Your order with IDnumber "+ CustomerId +" has been accepted and will be processed shortly, Thank you for choosing us";
-            writer.close();
-            System.out.println("Order saved to file: " + filename);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
     // This method is called when the "Save" button is clicked
     public void onProceedclick() throws IOException {
         // Get the email address entered by the user in the GUI
+        saveToTextFile();
         Scene1Controller s1 = new Scene1Controller();
+
+
        String email12 = s1.getEmailAddress(Scene1Controller.username);
         // Get the email subject entered by the user in the GUI
         String subject = OrderAccepted;
@@ -310,5 +379,6 @@ public class Scene2Controller {
         String messageBody = MsgText;
         sendEmail x = new sendEmail(email12, subject, messageBody);
         // Send the email
+
     }
 }
