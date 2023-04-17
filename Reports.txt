@@ -1,0 +1,3 @@
+009	Tariq	carpet	300x200	Dry Cleaning	65
+010	Tariq	carpet	200x100	Speed Cleaning	25
+011	Tariq	cover	200x200	Deep Cleaning	39

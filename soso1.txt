@@ -1,8 +1,0 @@
-001	Amer	cover	300x200	Deep Cleaning
-002	Amer	cover	300x200	Deep Cleaning
-003	Tariq	cover	200x200	Deep Cleaning
-004	Sara	carpet	200x200	Speed Cleaning
-005	Amer	carpet	300x200	Speed Cleaning
-006	Abdallah	cover	200x200	Deep Cleaning
-007	Sara	cover	200x200	Deep Cleaning
-008	Ruba	carpet	200x200	Deep Cleaning
