@@ -267,7 +267,7 @@ public class Scene2Controller {
     private int counter;
     Scene1Controller s1 = new Scene1Controller();
     public void saveToTextFile() {
-        String filename = "soso1.txt";
+        String filename = "Reports.txt";
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));

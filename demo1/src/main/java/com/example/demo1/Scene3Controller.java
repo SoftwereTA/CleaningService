@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.w3c.dom.Text;
 
@@ -19,8 +16,8 @@ import java.util.Objects;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
-
+import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Scene3Controller {
 
@@ -30,6 +27,8 @@ public class Scene3Controller {
     private TextField salesfield;
     @FXML
     private Tab workertab;
+    @FXML
+    private TextArea textarea1;
     private int totalCash = 0;
     private int numOrders = 0;
 
@@ -50,6 +49,8 @@ public class Scene3Controller {
 
     @FXML
      private DatePicker datepicker;
+    @FXML
+    private PasswordField passfield;
 
     //get
 
@@ -65,11 +66,12 @@ public class Scene3Controller {
      e.printStackTrace();
     }
    });
+      clearAllFields();
    //LoggedOutMsg();
   }
 
   public void calculateCash(ActionEvent event) throws IOException {
-
+    cashfield.setEditable(false);
    try (BufferedReader reader = new BufferedReader(new FileReader("Reports.txt"))) {
     String line;
     while ((line = reader.readLine()) != null) {
@@ -83,6 +85,7 @@ public class Scene3Controller {
   }
 
  public void countOrders(ActionEvent event) throws IOException {
+     salesfield.setEditable(false);
   try (BufferedReader reader = new BufferedReader(new FileReader("Reports.txt"))) {
    while (reader.readLine() != null) {
     numOrders++;
@@ -120,7 +123,51 @@ public class Scene3Controller {
   } catch (IOException e) {
    e.printStackTrace();
   }
+     try (FileWriter writer = new FileWriter("Untitled.txt", true)) {
+         writer.write(username + "," + passfield + "\n");
+     } catch (IOException ex) {
+         ex.printStackTrace();
+     }
+
+
+     JOptionPane.showMessageDialog(null, "User added successfully.");
+     firstname.setText("");
+     lastname.setText("");
+     userfield.setText("");
+     emailfield.setText("");
+     phonefield.setText("");
+     passfield.setText("");
+     datepicker.setValue(null);
  }
+    public void Reloading (ActionEvent event) throws FileNotFoundException {
+
+        File file = new File("C:\\Users\\Msys\\OneDrive\\Desktop\\CleaningSrv\\Reports.txt");
+        Scanner scanner = new Scanner(file);
+        String fileContent = "";
+        while (scanner.hasNextLine()) {
+            fileContent += scanner.nextLine() + "\n";
+        }
+        scanner.close();
+
+        textarea1.setText(fileContent);
+
+    }
+
+    public void SendReports(ActionEvent event) throws FileNotFoundException {
+        sendEmail x = new sendEmail();
+    }
+    public void clearAllFields() {
+        cashfield.setText("");
+        salesfield.setText("");
+        textarea1.setText("");
+        firstname.setText("");
+        lastname.setText("");
+        userfield.setText("");
+        emailfield.setText("");
+        phonefield.setText("");
+        datepicker.setValue(null);
+        passfield.setText("");
+    }
 }
 
 
