@@ -65,32 +65,35 @@ public class Scene1Controller {
 
 
     @FXML
-        public void login(ActionEvent event) throws IOException {
-            if (fieldUser != null && fieldPass != null) {
-                username = fieldUser.getText();
-                String password = fieldPass.getText();
-                boolean match = CheckCredentials(username, password, "Untitled.txt");
-                if (match) {
-                    setValidcred(true);
-                    if(username.equals("worker") && password.equals("123123")){
-                        switchSceneWorker(event);
-                    }
-                    else if(username.equals("Admin") && password.equals("admin")){
-                        switchScene3(event);
-                    }
-                    else {
-                        switchScene2(event);
-                    }
+    public void login(ActionEvent event) throws IOException {
+        if (fieldUser != null && fieldPass != null) {
+            String username = fieldUser.getText();
+            String password = fieldPass.getText();
+            boolean validCredentials = CheckCredentials(username, password, "Untitled.txt");
+            if (validCredentials) {
+                setValidcred(true);
+                if (username.startsWith("Worker")) {
+                    switchSceneWorker(event);
+                } else if (username.equals("Admin")) {
+                    switchScene3(event);
                 } else {
-                    setValidcred(false);
-                    ShowErrorMessage();
+                    switchScene2(event);
                 }
-            }
-            else {
+            } else {
                 setValidcred(false);
+                ShowErrorMessage();
             }
-
+        } else {
+            setValidcred(false);
         }
+    }
+
+
+
+
+
+
+
 
     private void switchSceneWorker(ActionEvent event) {
         Main.primaryStage.setScene(Main.scene5);

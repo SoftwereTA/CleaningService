@@ -9,4 +9,3 @@
 #    Then I should see a message of "Reciept for Card payment will be sent to your email"
 #
 
-
