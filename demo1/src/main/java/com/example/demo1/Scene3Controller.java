@@ -83,7 +83,6 @@ public class Scene3Controller {
    }
    cashfield.setText(String.valueOf(totalCash));
   }
-
  public void countOrders(ActionEvent event) throws IOException {
      salesfield.setEditable(false);
   try (BufferedReader reader = new BufferedReader(new FileReader("Reports.txt"))) {
@@ -167,6 +166,16 @@ public class Scene3Controller {
         phonefield.setText("");
         datepicker.setValue(null);
         passfield.setText("");
+    }
+
+    public String getsalesField() {
+      String sales = salesfield.getText();
+      return sales;
+    }
+
+    public String getcashField() {
+      String cash =cashfield.getText();
+      return cash;
     }
 }
 
