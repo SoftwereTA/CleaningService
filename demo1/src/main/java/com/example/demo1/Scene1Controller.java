@@ -50,7 +50,8 @@ public class Scene1Controller {
         return fieldUser.getText();
     }
 
-
+    @FXML
+    public static boolean Scene4IsOpen = false;
 
     @FXML
     private static boolean isApplicationClosed = false;
@@ -60,14 +61,10 @@ public class Scene1Controller {
     @FXML
     public static String username   = null;
 
-
-
-
-
     @FXML
     public void login(ActionEvent event) throws IOException {
         if (fieldUser != null && fieldPass != null) {
-            String username = fieldUser.getText();
+            username = fieldUser.getText();
             String password = fieldPass.getText();
             boolean validCredentials = CheckCredentials(username, password, "Untitled.txt");
             if (validCredentials) {
@@ -89,16 +86,9 @@ public class Scene1Controller {
     }
 
 
-
-
-
-
-
-
-    private void switchSceneWorker(ActionEvent event) {
+    public void switchSceneWorker(ActionEvent event) {
         Main.primaryStage.setScene(Main.scene5);
     }
-
 
     public void setValidcred(boolean b) {
         Validcred = b;
@@ -112,12 +102,15 @@ public class Scene1Controller {
             Main.primaryStage.setScene(Main.scene2);
     }
     @FXML
-    private void switchScene3(ActionEvent event) throws IOException {
+    public void switchScene3(ActionEvent event) throws IOException {
         Main.primaryStage.setScene(Main.scene3);
     }
     @FXML
-    private void switchScene4(ActionEvent event) throws IOException {
-        Main.primaryStage.setScene(Main.scene4);
+    public void switchScene4(ActionEvent event) throws IOException {
+        Platform.runLater(() -> {
+            Main.primaryStage.setScene(Main.scene4);
+            Scene4IsOpen = true;
+        });
     }
 
     @FXML

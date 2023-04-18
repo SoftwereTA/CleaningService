@@ -1,13 +1,4 @@
 Admin,admin
-Tariq,1234
-Amer,1234S
-Sara,1235
-Abdallah,1234
-Ruba,12345
-worker,123123
-dianash,12345
-Emad,12345
-Worker1,123123
-Worker2,1010
-Worker3,1019
-Admin1,1010
+Worker1,1010
+ahmad,1010
+abdallah,1010
