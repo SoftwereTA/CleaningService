@@ -10,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
@@ -26,12 +27,16 @@ public class Scene4Controller {
     private TextField phonefield;
 
 //create a method that saves the data to a textfile
-    public void saveData(ActionEvent event) throws IOException {
-        String username = usernamefield.getText();
-        String password = passwordff.getText();
-        String email = emailfield.getText();
-        String phone = phonefield.getText();
+public void saveData(ActionEvent event) throws IOException {
+    String username = usernamefield.getText();
+    String password = passwordff.getText();
+    String email = emailfield.getText();
+    String phone = phonefield.getText();
 
+    boolean validUsername = username.matches("^(?!Worker\\d*$|Admin\\d*$)[A-Za-z][A-Za-z0-9]*$");
+    // check if the username does not start with "Worker" or "Admin" followed by digits
+
+    if (validUsername) {
         try (FileWriter writer = new FileWriter("Customers.txt", true)) {
             writer.write(username + "," + password +  "," + email + "," + phone + "\n");
         } catch (IOException ex) {
@@ -45,7 +50,11 @@ public class Scene4Controller {
         }
 
         switchScene1(event);
+    } else {
+        JOptionPane.showMessageDialog(null, "Invalid username");
     }
+}
+
 
 
     public void switchScene1(ActionEvent event) throws IOException {
