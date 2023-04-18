@@ -1,3 +1,2 @@
-001	tarq		cover	200x100	Deep Cleaning	350
-002	null		cover	200x200	Deep Cleaning	329
-003	null		cover	300x200	Deep Cleaning	374
+001	tarq		cover	200x200	Deep Cleaning	329
+002	belal		cover	300x200	Speed Cleaning	347
