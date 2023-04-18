@@ -49,8 +49,7 @@ public class WorkersceneCont {
         String id = textID.getText();
         // Read the contents of the original file
         BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
-        writer.write(id + "\t" + status + "\n");
-        writer.close();
+        writer.write(Scene1Controller.username + "\t" + id + "\t" + status + "\n");        writer.close();
         System.out.println("Order saved to file: " + filename);
     }
     @FXML
