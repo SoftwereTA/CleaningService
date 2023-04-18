@@ -1,8 +1,1 @@
-Tariq,1234,Tariqmarmash17@gmail.com,0599799230
-Amer,1234,amerkobari22@gmail.com,0955555555
-Sara,1235,sara.4rabi@gmail.com,0599799230
-Abdallah,1234,abdallahhannoud66@gmail.com,0599799230
-Ruba,12345,rubaarafat7@gmail.com,0599799230
-Diana,12345,dianashwiki11@gmail.com,0522979664
-Abdallah,12345,abdallahhannoud66@gmail.com,0594503730
-Emad,12345,emadhamadneh@gmail.com,0599799230
+abdallah,1010,abdallahhannoud66@gmail.com,0599799230
