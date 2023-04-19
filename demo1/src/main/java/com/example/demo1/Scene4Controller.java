@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -15,6 +16,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 public class Scene4Controller {
+    //public String errorMessage;
     @FXML
     private PasswordField passwordff;
     @FXML
@@ -25,6 +27,9 @@ public class Scene4Controller {
     private TextField phonefield;
     @FXML
     public static boolean validInputUser;
+    @FXML
+    public  Button  signup;
+
 
 
 //create a method that saves the data to a textfile
@@ -133,4 +138,19 @@ public void saveData(ActionEvent event) throws IOException {
             return null;
     }
 
+    public void setUsername(String worker123) {
+        usernamefield.setText(worker123);
+    }
+
+    public void setPassword(String password) {
+        passwordff.setText(password);
+    }
+
+    public void setEmail(String invalid_email) {
+        emailfield.setText(invalid_email);
+    }
+
+    public void setPhone(String s) {
+        phonefield.setText(s);
+    }
 }
