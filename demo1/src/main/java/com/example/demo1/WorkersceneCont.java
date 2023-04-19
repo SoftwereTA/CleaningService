@@ -142,7 +142,6 @@ public class WorkersceneCont {
         return name;
     }
 
-
     public boolean getsent() {
         return sent;
     }
