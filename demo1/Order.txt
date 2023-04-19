@@ -30,3 +30,4 @@ Worker1	002	Added
 Worker1	002	InTreatment
 Worker1	002	Complete
 Worker1	002	InTreatment
+Worker1	002	Complete

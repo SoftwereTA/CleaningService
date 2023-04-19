@@ -120,7 +120,7 @@ public class WorkersceneCont {
     private static String messageBody;
     public static String getName(String id) {
         String name = "";
-        sent = true;
+        sent = false;
         try (Scanner scanner = new Scanner(new File("Reports.txt"))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -132,6 +132,7 @@ public class WorkersceneCont {
                     String subject = "OrderUpdate";
                     messageBody = MsgText;
                     sendEmail x = new sendEmail(email12, subject, messageBody);
+                    sent = true;
                 }
 
             }
