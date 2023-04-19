@@ -11,15 +11,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class WorkersceneCont {
 
+    private static boolean sent = false;
     @FXML
     private TextArea textArea;
 
@@ -120,8 +117,10 @@ public class WorkersceneCont {
         //LoggedOutMsg();
     }
 
+    private static String messageBody;
     public static String getName(String id) {
         String name = "";
+        sent = true;
         try (Scanner scanner = new Scanner(new File("Reports.txt"))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -131,7 +130,7 @@ public class WorkersceneCont {
                     Scene1Controller s1 = new Scene1Controller();
                     String email12 = s1.getEmailAddress(name);
                     String subject = "OrderUpdate";
-                    String messageBody = MsgText;
+                    messageBody = MsgText;
                     sendEmail x = new sendEmail(email12, subject, messageBody);
                 }
 
@@ -141,5 +140,15 @@ public class WorkersceneCont {
         }
         return name;
     }
+
+
+    public boolean getsent() {
+        return sent;
+    }
+
+    public String getMsg() {
+        return messageBody;
+    }
+
 
 }
