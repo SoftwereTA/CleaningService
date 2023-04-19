@@ -15,8 +15,6 @@ import java.io.IOException;
 public class AvailabilityTest {
     private TextField orderId;
 
-
-
     @When("the worker enter the order ID")
     public void the_worker_enter_the_order_id() {
         // Write code here that turns the phrase above into concrete actions
@@ -28,7 +26,6 @@ public class AvailabilityTest {
     @When("click on Waiting button")
     public void click_on_waiting_button() throws IOException {
         // Write code here that turns the phrase above into concrete actions
-
         //throw new io.cucumber.java.PendingException();
     }
 
@@ -38,7 +35,6 @@ public class AvailabilityTest {
         Platform.runLater(() -> {
             WorkersceneCont obj = new WorkersceneCont();
             Scene1Controller obj1 = new Scene1Controller();
-
             String workerStatus = null; // Get the worker's status from the text file
             try {
                 workerStatus = obj.getWorkerStatus(obj1.getUsername());
