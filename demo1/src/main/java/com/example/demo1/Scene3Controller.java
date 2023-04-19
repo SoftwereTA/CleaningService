@@ -51,6 +51,10 @@ public class Scene3Controller {
      private DatePicker datepicker;
     @FXML
     private PasswordField passfield;
+    @FXML
+    public Button neworker;
+    @FXML
+    public static boolean validWorkerInput;
 
     //get
 
@@ -96,48 +100,69 @@ public class Scene3Controller {
   salesfield.setText(String.valueOf(numOrders));
  }
 
- public void saveUserData(ActionEvent event) throws IOException {
-  String fname = "";
-  String lname = "";
-  String username = "";
-  String email = "";
-  String phone = "";
-  String birthday = "";
-  try {
-   fname = firstname.getText();
-   lname = lastname.getText();
-   username = userfield.getText();
-   email = emailfield.getText();
-   phone = phonefield.getText();
-   if (datepicker.getValue() != null) {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    birthday = datepicker.getValue().format(formatter);
-   }
-  } catch (NullPointerException e) {
-   e.printStackTrace();
-  }
+    public void saveUserData(ActionEvent event) throws IOException {
+        String fname = "";
+        String lname = "";
+        String username = "";
+        String email = "";
+        String phone = "";
+        String birthday = "";
+        String password = "";
 
-  try (FileWriter writer = new FileWriter("Wrokers.txt", true)) {
-   writer.write(fname + "," + lname + "," + username + "," + email + "," + phone + "," + birthday + "\n");
-  } catch (IOException e) {
-   e.printStackTrace();
-  }
-     try (FileWriter writer = new FileWriter("Untitled.txt", true)) {
-         writer.write(username + "," + passfield.getText() + "\n");
-     } catch (IOException ex) {
-         ex.printStackTrace();
-     }
+        try {
+            fname = firstname.getText();
+            lname = lastname.getText();
+            username = userfield.getText();
+            email = emailfield.getText();
+            phone = phonefield.getText();
+            password = passfield.getText();
+            if (datepicker.getValue() != null) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                birthday = datepicker.getValue().format(formatter);
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+        // Check if fields are not empty and are valid
+        boolean notEmptyFields = !fname.isEmpty() && !lname.isEmpty() && !username.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !password.isEmpty();
+        boolean isValidUsername = username.matches("^Worker([1-9]|[1-9][0-9]|100)$");
+        boolean isValidEmail = email.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        boolean isValidPhone = phone.matches("^\\d{10}$");
+        boolean isValidName = fname.matches("^[A-Za-z]*$") && lname.matches("^[A-Za-z]*$");
+
+        if (notEmptyFields && isValidUsername && isValidEmail && isValidPhone && isValidName) {
+            try (FileWriter writer = new FileWriter("Workers.txt", true)) {
+                writer.write(fname + "," + lname + "," + username + "," + email + "," + phone + "," + birthday + "\n");
+                validWorkerInput = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try (FileWriter writer = new FileWriter("Untitled.txt", true)) {
+                writer.write(username + "," + password + "\n");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            JOptionPane.showMessageDialog(null, "User added successfully.");
+            firstname.setText("");
+            lastname.setText("");
+            userfield.setText("");
+            emailfield.setText("");
+            phonefield.setText("");
+            passfield.setText("");
+            datepicker.setValue(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid input detected. Please check that all fields are not empty and are valid.");
+        }
+    }
 
 
-     JOptionPane.showMessageDialog(null, "User added successfully.");
-     firstname.setText("");
-     lastname.setText("");
-     userfield.setText("");
-     emailfield.setText("");
-     phonefield.setText("");
-     passfield.setText("");
-     datepicker.setValue(null);
- }
+
+
+
+
     public void Reloading (ActionEvent event) throws FileNotFoundException {
 
         File file = new File("C:\\Users\\MsI\\Desktop\\ProjectSoft\\demo1\\Reports.txt");
@@ -176,6 +201,29 @@ public class Scene3Controller {
     public String getcashField() {
       String cash =cashfield.getText();
       return cash;
+    }
+
+    public String getfirstname() {
+      return firstname.getText();
+    }
+
+    public String getlastname() {
+        return lastname.getText();
+    }
+    public String getusername() {
+      return userfield.getText();
+    }
+
+    public String getpassword() {
+      return passfield.getText();
+    }
+
+    public String getemail() {
+      return emailfield.getText();
+    }
+
+    public String getnumber() {
+      return phonefield.getText();
     }
 }
 

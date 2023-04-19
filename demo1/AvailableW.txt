@@ -1,2 +1,3 @@
-
 Worker1	Unavailable
+Worker1	Unavailable
+Worker1	Available
