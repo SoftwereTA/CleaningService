@@ -1,2 +1,2 @@
-001	Tariq		cover	300x200	Dry Cleaning	383
-002	tarq		carpet	300x200	Dry Cleaning	383
+001	Ali		cover	200x200	Dry Cleaning	0
+002	tarq		cover	200x200	Dry Cleaning	338
