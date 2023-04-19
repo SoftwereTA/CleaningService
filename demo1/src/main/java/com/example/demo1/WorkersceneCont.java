@@ -30,7 +30,7 @@ public class WorkersceneCont {
     public void Reloading (ActionEvent event) throws FileNotFoundException {
 
 
-        File file = new File("C:\\Users\\Msys\\OneDrive\\Desktop\\CleaningSrv\\demo1\\Reports.txt");
+        File file = new File("C:\\Users\\MsI\\Desktop\\ProjectSoft\\demo1\\Reports.txt");
         Scanner scanner = new Scanner(file);
         String fileContent = "";
         while (scanner.hasNextLine()) {
@@ -120,7 +120,7 @@ public class WorkersceneCont {
     private static String messageBody;
     public static String getName(String id) {
         String name = "";
-        sent = true;
+        sent = false;
         try (Scanner scanner = new Scanner(new File("Reports.txt"))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -132,6 +132,7 @@ public class WorkersceneCont {
                     String subject = "OrderUpdate";
                     messageBody = MsgText;
                     sendEmail x = new sendEmail(email12, subject, messageBody);
+                    sent = true;
                 }
 
             }
