@@ -49,7 +49,8 @@ public class Scene1Controller {
     public String getFieldUser() {
         return fieldUser.getText();
     }
-
+    @FXML
+    public Button NewCustomer;
     @FXML
     public static boolean Scene4IsOpen = false;
 
